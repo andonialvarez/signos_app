@@ -1,0 +1,230 @@
+[
+ {
+  "key": "gracias",
+  "label": "GRACIAS",
+  "queries": [
+   "gracias"
+  ],
+  "term": "gracia",
+  "chosen": "gracias_dar",
+  "lemma": "gracia (dar gracias, o las gracias)",
+  "context": "Manifestar el agradecimiento por el ...",
+  "candidates": [
+   {
+    "name": "gracias_dar",
+    "lemma": "gracia (dar gracias, o las gracias)",
+    "def": "Manifestar el agradecimiento por el ...",
+    "term": "gracia"
+   },
+   {
+    "name": "gracia_tener",
+    "lemma": "gracia (tener gracia alguien o algo)",
+    "def": "Resultar agradable y divertido.",
+    "term": "gracia"
+   }
+  ],
+  "status": "ok"
+ },
+ {
+  "key": "por_favor",
+  "label": "POR-FAVOR",
+  "queries": [
+   "por favor"
+  ],
+  "term": "favor",
+  "chosen": "favor_por-pedir",
+  "lemma": "favor (hágame, o haz, o hazme, etc., el favor, o el favor de algo)",
+  "context": "Para formular una petición cortés.",
+  "candidates": [
+   {
+    "name": "favor-ayuda",
+    "lemma": "favor",
+    "def": "Ayuda o socorro que se concede a alguien.",
+    "term": "favor"
+   },
+   {
+    "name": "favor_a",
+    "lemma": "favor (a favor)",
+    "def": "En beneficio y utilidad de alguien ...",
+    "term": "favor"
+   },
+   {
+    "name": "favor_hagame_el",
+    "lemma": "favor (hágame, o haz, o hazme, etc., el favor, o el favor de algo)",
+    "def": "Para mandar o exigir algo.",
+    "term": "favor"
+   },
+   {
+    "name": "favor_por-pedir",
+    "lemma": "favor (hágame, o haz, o hazme, etc., el favor, o el favor de algo)",
+    "def": "Para formular una petición cortés.",
+    "term": "favor"
+   },
+   {
+    "name": "favor_por-protesta",
+    "lemma": "favor (por favor)",
+    "def": "Para expresar protesta.",
+    "term": "favor"
+   }
+  ],
+  "status": "ok"
+ },
+ {
+  "key": "musica",
+  "label": "MÚSICA",
+  "queries": [
+   "música"
+  ],
+  "term": "música",
+  "chosen": "musica_mon",
+  "lemma": "música",
+  "context": "1. Melod?a, ritmo y armon?a, combin ...",
+  "candidates": [
+   {
+    "name": "musica_mon",
+    "lemma": "música",
+    "def": "1. Melod?a, ritmo y armon?a, combin ...",
+    "term": "música"
+   },
+   {
+    "name": "musica",
+    "lemma": "músico, ca",
+    "def": "1. Perteneciente o relativo a la m? ...",
+    "term": "música"
+   }
+  ],
+  "status": "ok"
+ },
+ {
+  "key": "vacaciones",
+  "label": "VACACIONES",
+  "queries": [
+   "vacaciones"
+  ],
+  "term": "vacación",
+  "chosen": "vacacion",
+  "lemma": "vacación",
+  "context": "Descanso temporal de una actividad ...",
+  "candidates": [
+   {
+    "name": "vacacion",
+    "lemma": "vacación",
+    "def": "Descanso temporal de una actividad ...",
+    "term": "vacación"
+   }
+  ],
+  "status": "ok"
+ },
+ {
+  "key": "que_ha_pasado",
+  "label": "¿QUÉ-HA-PASADO?",
+  "queries": [
+   "qué ha pasado"
+  ],
+  "term": "pasar",
+  "chosen": "pasado-que-ha",
+  "lemma": "pasar (¿Qué ha pasado?)",
+  "context": "Para pedir explicación sobre algo que ...",
+  "candidates": [
+   {
+    "name": "pasar-desinteres",
+    "lemma": "pasar",
+    "def": "Mostrar desinter?s o desprecio por ...",
+    "term": "pasar"
+   },
+   {
+    "name": "pasar",
+    "lemma": "pasar",
+    "def": "Hacer que alguien vaya de un lugar ...",
+    "term": "pasar"
+   },
+   {
+    "name": "pasarlo-bien",
+    "lemma": "pasar (pasarlo bien)",
+    "def": "Sentir placer o satisfacción por algo ...",
+    "term": "pasar"
+   },
+   {
+    "name": "pasado-que-ha",
+    "lemma": "pasar (¿Qué ha pasado?)",
+    "def": "Para pedir explicación sobre algo que ...",
+    "term": "pasar"
+   }
+  ],
+  "status": "ok"
+ },
+ {
+  "key": "ya",
+  "label": "YA",
+  "queries": [
+   "ya"
+  ],
+  "term": "ya",
+  "chosen": "ya_e",
+  "lemma": "ya",
+  "context": "Para designar que algo ha finalizad ...",
+  "candidates": [
+   {
+    "name": "ya_a",
+    "lemma": "ya",
+    "def": "En tiempo u ocasi?n pasados.",
+    "term": "ya"
+   },
+   {
+    "name": "ya-ahora",
+    "lemma": "ya",
+    "def": "1. Inmediatamente, ahora mismo. 2. ...",
+    "term": "ya"
+   },
+   {
+    "name": "ya_b",
+    "lemma": "ya",
+    "def": "En tiempo u ocasi?n futuros.",
+    "term": "ya"
+   },
+   {
+    "name": "ya_c",
+    "lemma": "ya",
+    "def": "Denota que algo debe ser finalizado.",
+    "term": "ya"
+   },
+   {
+    "name": "ya_d",
+    "lemma": "ya",
+    "def": "Para expresar que por fin se realiz ...",
+    "term": "ya"
+   },
+   {
+    "name": "ya_e",
+    "lemma": "ya",
+    "def": "Para designar que algo ha finalizad ...",
+    "term": "ya"
+   },
+   {
+    "name": "ya_f",
+    "lemma": "ya",
+    "def": "Para expresar que nos acordamos o n ...",
+    "term": "ya"
+   },
+   {
+    "name": "ya_g",
+    "lemma": "ya",
+    "def": "Para denotar que se entiende algo q ...",
+    "term": "ya"
+   },
+   {
+    "name": "ya-saber",
+    "lemma": "ya",
+    "def": "Para remarcar que se sabe lo que se ...",
+    "term": "ya"
+   },
+   {
+    "name": "ya_que",
+    "lemma": "ya (ya que)",
+    "def": "Porque, puesto que.",
+    "term": "ya"
+   }
+  ],
+  "status": "ok"
+ }
+]

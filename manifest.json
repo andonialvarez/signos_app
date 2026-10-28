@@ -1,0 +1,1742 @@
+{
+ "generated": "2026-10-28T20:09:45+00:00",
+ "source": "DILSE, Diccionario de la Lengua de Signos Española. © Fundación CNSE. https://fundacioncnse-dilse.org",
+ "license": "CC BY-NC-SA 3.0 https://creativecommons.org/licenses/by-nc-sa/3.0/",
+ "items": {
+  "hola": {
+   "src": "hola",
+   "lemma": "hola",
+   "mp4": 30634,
+   "jpg": 19839
+  },
+  "casa": {
+   "src": "casa",
+   "lemma": "casa",
+   "mp4": 39939,
+   "jpg": 23560
+  },
+  "yo": {
+   "src": "yo",
+   "lemma": "yo",
+   "mp4": 26341,
+   "jpg": 20543
+  },
+  "tu": {
+   "src": "tu1",
+   "lemma": "tú",
+   "mp4": 21228,
+   "jpg": 21075
+  },
+  "nombre": {
+   "src": "nombre",
+   "lemma": "nombre",
+   "mp4": 40286,
+   "jpg": 23860
+  },
+  "gracias": {
+   "src": "gracias_dar",
+   "lemma": "gracia (dar gracias, o las gracias)",
+   "mp4": 47239,
+   "jpg": 23912
+  },
+  "coche": {
+   "src": "coche",
+   "lemma": "coche",
+   "mp4": 45705,
+   "jpg": 24281
+  },
+  "bien": {
+   "src": "bien_a",
+   "lemma": "bien",
+   "mp4": 31720,
+   "jpg": 21185
+  },
+  "adios": {
+   "src": "adios_5",
+   "lemma": "3Androides",
+   "mp4": 32523,
+   "jpg": 24237
+  },
+  "ducharse": {
+   "src": "duchar",
+   "lemma": "duchar",
+   "mp4": 39899,
+   "jpg": 21852
+  },
+  "por_favor": {
+   "src": "favor_por-pedir",
+   "lemma": "favor (hágame, o haz, o hazme, etc., el favor, o el favor de algo)",
+   "mp4": 23079,
+   "jpg": 17619
+  },
+  "si": {
+   "src": "si",
+   "lemma": "3Androides",
+   "mp4": 20866,
+   "jpg": 20370
+  },
+  "no": {
+   "src": "no",
+   "lemma": "no",
+   "mp4": 18280,
+   "jpg": 17717
+  },
+  "sordo": {
+   "src": "sordo",
+   "lemma": "sordo",
+   "mp4": 26984,
+   "jpg": 15240
+  },
+  "oyente": {
+   "src": "oyente",
+   "lemma": "oyente",
+   "mp4": 25478,
+   "jpg": 20990
+  },
+  "signar": {
+   "src": "signar",
+   "lemma": "signar",
+   "mp4": 40265,
+   "jpg": 25498
+  },
+  "entender": {
+   "src": "entender",
+   "lemma": "entender",
+   "mp4": 32305,
+   "jpg": 23039
+  },
+  "comer": {
+   "src": "comer-alimento",
+   "lemma": "comer",
+   "mp4": 30855,
+   "jpg": 21353
+  },
+  "beber": {
+   "src": "beber",
+   "lemma": "beber",
+   "mp4": 40816,
+   "jpg": 22176
+  },
+  "agua": {
+   "src": "agua",
+   "lemma": "agua",
+   "mp4": 33921,
+   "jpg": 21675
+  },
+  "amigo": {
+   "src": "amigo",
+   "lemma": "amigo",
+   "mp4": 42400,
+   "jpg": 18323
+  },
+  "familia": {
+   "src": "familia",
+   "lemma": "familia",
+   "mp4": 50465,
+   "jpg": 20432
+  },
+  "madre": {
+   "src": "madre",
+   "lemma": "madre",
+   "mp4": 34749,
+   "jpg": 21161
+  },
+  "padre": {
+   "src": "padre",
+   "lemma": "padre",
+   "mp4": 35056,
+   "jpg": 22170
+  },
+  "hermano": {
+   "src": "hermano_mon",
+   "lemma": "hermano",
+   "mp4": 20363,
+   "jpg": 18143
+  },
+  "trabajar": {
+   "src": "trabajar",
+   "lemma": "trabajar",
+   "mp4": 47971,
+   "jpg": 18687
+  },
+  "dormir": {
+   "src": "dormir",
+   "lemma": "dormir",
+   "mp4": 29504,
+   "jpg": 18103
+  },
+  "despertarse": {
+   "src": "despertar",
+   "lemma": "despertar",
+   "mp4": 55089,
+   "jpg": 16494
+  },
+  "desayunar": {
+   "src": "desayunar",
+   "lemma": "desayunar",
+   "mp4": 57795,
+   "jpg": 14034
+  },
+  "telefono": {
+   "src": "telefono",
+   "lemma": "3Androides",
+   "mp4": 24827,
+   "jpg": 16924
+  },
+  "hoy": {
+   "src": "hoy",
+   "lemma": "hoy",
+   "mp4": 35069,
+   "jpg": 19724
+  },
+  "manana": {
+   "src": "manana",
+   "lemma": "3Androides",
+   "mp4": 35865,
+   "jpg": 18251
+  },
+  "ayer": {
+   "src": "ayer",
+   "lemma": "ayer",
+   "mp4": 30536,
+   "jpg": 17109
+  },
+  "ahora": {
+   "src": "ahora",
+   "lemma": "ahora",
+   "mp4": 24558,
+   "jpg": 22051
+  },
+  "despues": {
+   "src": "despues",
+   "lemma": "3Androides",
+   "mp4": 27762,
+   "jpg": 19027
+  },
+  "dia": {
+   "src": "dia_a",
+   "lemma": "3Androides",
+   "mp4": 30897,
+   "jpg": 20362
+  },
+  "noche": {
+   "src": "noche",
+   "lemma": "noche",
+   "mp4": 48753,
+   "jpg": 24150
+  },
+  "semana": {
+   "src": "semana",
+   "lemma": "semana",
+   "mp4": 23731,
+   "jpg": 18614
+  },
+  "libro": {
+   "src": "libro",
+   "lemma": "libro",
+   "mp4": 35798,
+   "jpg": 21019
+  },
+  "escribir": {
+   "src": "escribir",
+   "lemma": "escribir",
+   "mp4": 41020,
+   "jpg": 19758
+  },
+  "leer": {
+   "src": "leer",
+   "lemma": "leer",
+   "mp4": 34650,
+   "jpg": 23278
+  },
+  "hablar": {
+   "src": "hablar-charlar_1",
+   "lemma": "hablar",
+   "mp4": 36281,
+   "jpg": 22613
+  },
+  "mirar": {
+   "src": "mirar-ver",
+   "lemma": "mirar",
+   "mp4": 34047,
+   "jpg": 22576
+  },
+  "escuchar": {
+   "src": "escuchar-oyente",
+   "lemma": "escuchar",
+   "mp4": 29364,
+   "jpg": 19082
+  },
+  "querer": {
+   "src": "querer-desear",
+   "lemma": "querer",
+   "mp4": 28936,
+   "jpg": 19752
+  },
+  "gustar": {
+   "src": "gustar",
+   "lemma": "gustar",
+   "mp4": 30190,
+   "jpg": 27734
+  },
+  "saber": {
+   "src": "saber",
+   "lemma": "saber",
+   "mp4": 31824,
+   "jpg": 22373
+  },
+  "poder": {
+   "src": "poder-capacidad",
+   "lemma": "poder",
+   "mp4": 30283,
+   "jpg": 20329
+  },
+  "ir": {
+   "src": "ir_mon",
+   "lemma": "ir",
+   "mp4": 24955,
+   "jpg": 16896
+  },
+  "venir": {
+   "src": "venir",
+   "lemma": "venir",
+   "mp4": 24449,
+   "jpg": 21602
+  },
+  "hacer": {
+   "src": "hacer",
+   "lemma": "hacer",
+   "mp4": 43823,
+   "jpg": 24013
+  },
+  "tener": {
+   "src": "tener-haber",
+   "lemma": "tener",
+   "mp4": 20994,
+   "jpg": 19670
+  },
+  "vivir": {
+   "src": "vivir",
+   "lemma": "vivir",
+   "mp4": 27948,
+   "jpg": 21697
+  },
+  "estudiar": {
+   "src": "estudiar",
+   "lemma": "estudiar",
+   "mp4": 28669,
+   "jpg": 23107
+  },
+  "aprender": {
+   "src": "aprender",
+   "lemma": "aprender",
+   "mp4": 49591,
+   "jpg": 27364
+  },
+  "colegio": {
+   "src": "colegio",
+   "lemma": "colegio",
+   "mp4": 38258,
+   "jpg": 20974
+  },
+  "profesor": {
+   "src": "profesor",
+   "lemma": "profesor",
+   "mp4": 36371,
+   "jpg": 19981
+  },
+  "medico": {
+   "src": "medico",
+   "lemma": "3Androides",
+   "mp4": 44201,
+   "jpg": 23633
+  },
+  "hospital": {
+   "src": "hospital",
+   "lemma": "hospital",
+   "mp4": 33841,
+   "jpg": 18637
+  },
+  "bicicleta": {
+   "src": "bicicleta",
+   "lemma": "bicicleta",
+   "mp4": 51461,
+   "jpg": 23432
+  },
+  "autobus": {
+   "src": "autobus",
+   "lemma": "3Androides",
+   "mp4": 44141,
+   "jpg": 23674
+  },
+  "tren": {
+   "src": "tren",
+   "lemma": "tren",
+   "mp4": 38998,
+   "jpg": 17305
+  },
+  "avion": {
+   "src": "avion",
+   "lemma": "3Androides",
+   "mp4": 26874,
+   "jpg": 18270
+  },
+  "moto": {
+   "src": "moto",
+   "lemma": "moto",
+   "mp4": 40801,
+   "jpg": 19169
+  },
+  "conducir": {
+   "src": "conducir",
+   "lemma": "conducir",
+   "mp4": 45705,
+   "jpg": 23044
+  },
+  "calle": {
+   "src": "calle",
+   "lemma": "calle",
+   "mp4": 42133,
+   "jpg": 20487
+  },
+  "ciudad": {
+   "src": "ciudad",
+   "lemma": "ciudad",
+   "mp4": 48593,
+   "jpg": 21863
+  },
+  "pueblo": {
+   "src": "pueblo",
+   "lemma": "pueblo",
+   "mp4": 28033,
+   "jpg": 22078
+  },
+  "tienda": {
+   "src": "tienda",
+   "lemma": "tienda",
+   "mp4": 31536,
+   "jpg": 18130
+  },
+  "comprar": {
+   "src": "comprar_bim",
+   "lemma": "comprar",
+   "mp4": 29912,
+   "jpg": 22452
+  },
+  "dinero": {
+   "src": "dinero",
+   "lemma": "dinero",
+   "mp4": 19316,
+   "jpg": 18728
+  },
+  "caro": {
+   "src": "caro",
+   "lemma": "caro",
+   "mp4": 22482,
+   "jpg": 18897
+  },
+  "barato": {
+   "src": "barato",
+   "lemma": "barato",
+   "mp4": 21438,
+   "jpg": 14447
+  },
+  "pan": {
+   "src": "pan",
+   "lemma": "pan",
+   "mp4": 25906,
+   "jpg": 18413
+  },
+  "leche": {
+   "src": "leche",
+   "lemma": "leche",
+   "mp4": 54361,
+   "jpg": 16380
+  },
+  "cafe": {
+   "src": "cafe",
+   "lemma": "3Androides",
+   "mp4": 38396,
+   "jpg": 21490
+  },
+  "fruta": {
+   "src": "fruta",
+   "lemma": "fruta",
+   "mp4": 40647,
+   "jpg": 21988
+  },
+  "manzana": {
+   "src": "manzana",
+   "lemma": "manzana",
+   "mp4": 27253,
+   "jpg": 20524
+  },
+  "carne": {
+   "src": "carne",
+   "lemma": "carne",
+   "mp4": 34844,
+   "jpg": 20562
+  },
+  "pescado": {
+   "src": "pescado",
+   "lemma": "pescado",
+   "mp4": 31021,
+   "jpg": 22359
+  },
+  "huevo": {
+   "src": "huevo",
+   "lemma": "huevo",
+   "mp4": 43977,
+   "jpg": 23400
+  },
+  "cocinar": {
+   "src": "cocinar_ma",
+   "lemma": "cocinar",
+   "mp4": 28965,
+   "jpg": 20791
+  },
+  "cocina": {
+   "src": "cocina_ma",
+   "lemma": "cocina",
+   "mp4": 28965,
+   "jpg": 20791
+  },
+  "bano": {
+   "src": "bano",
+   "lemma": "3Androides",
+   "mp4": 24663,
+   "jpg": 19379
+  },
+  "dormitorio": {
+   "src": "dormitorio",
+   "lemma": "dormitorio",
+   "mp4": 39443,
+   "jpg": 18227
+  },
+  "cama": {
+   "src": "cama_mon",
+   "lemma": "cama",
+   "mp4": 36766,
+   "jpg": 18556
+  },
+  "mesa": {
+   "src": "mesa",
+   "lemma": "mesa",
+   "mp4": 40136,
+   "jpg": 24351
+  },
+  "silla": {
+   "src": "silla",
+   "lemma": "silla",
+   "mp4": 43455,
+   "jpg": 25910
+  },
+  "puerta": {
+   "src": "puerta",
+   "lemma": "puerta",
+   "mp4": 35490,
+   "jpg": 18489
+  },
+  "ventana": {
+   "src": "ventana",
+   "lemma": "ventana",
+   "mp4": 43273,
+   "jpg": 20193
+  },
+  "llave": {
+   "src": "llave",
+   "lemma": "llave",
+   "mp4": 18277,
+   "jpg": 19408
+  },
+  "lavar": {
+   "src": "lavarse-manos",
+   "lemma": "lavar (lavarse las manos)",
+   "mp4": 29317,
+   "jpg": 24392
+  },
+  "peinarse": {
+   "src": "peinar",
+   "lemma": "peinar",
+   "mp4": 36667,
+   "jpg": 22755
+  },
+  "vestirse": {
+   "src": "vestir",
+   "lemma": "vestir",
+   "mp4": 44615,
+   "jpg": 25905
+  },
+  "ropa": {
+   "src": "ropa",
+   "lemma": "ropa",
+   "mp4": 44615,
+   "jpg": 25905
+  },
+  "zapato": {
+   "src": "zapato",
+   "lemma": "zapato",
+   "mp4": 23293,
+   "jpg": 17308
+  },
+  "pantalon": {
+   "src": "pantalon",
+   "lemma": "3Androides",
+   "mp4": 35225,
+   "jpg": 21296
+  },
+  "abrigo": {
+   "src": "abrigo",
+   "lemma": "abrigo",
+   "mp4": 55758,
+   "jpg": 25889
+  },
+  "frio": {
+   "src": "frio",
+   "lemma": "3Androides",
+   "mp4": 38806,
+   "jpg": 22120
+  },
+  "calor": {
+   "src": "calor",
+   "lemma": "calor",
+   "mp4": 39772,
+   "jpg": 23274
+  },
+  "llover": {
+   "src": "llover",
+   "lemma": "llover",
+   "mp4": 44721,
+   "jpg": 19992
+  },
+  "sol": {
+   "src": "sol",
+   "lemma": "sol",
+   "mp4": 23669,
+   "jpg": 18604
+  },
+  "nieve": {
+   "src": "nieve",
+   "lemma": "nieve",
+   "mp4": 46105,
+   "jpg": 25396
+  },
+  "viento": {
+   "src": "viento_a",
+   "lemma": "viento",
+   "mp4": 34766,
+   "jpg": 18145
+  },
+  "arbol": {
+   "src": "arbol",
+   "lemma": "3Androides",
+   "mp4": 54214,
+   "jpg": 22877
+  },
+  "flor": {
+   "src": "flor",
+   "lemma": "flor",
+   "mp4": 37527,
+   "jpg": 23396
+  },
+  "mar": {
+   "src": "mar",
+   "lemma": "mar",
+   "mp4": 44415,
+   "jpg": 21724
+  },
+  "playa": {
+   "src": "playa",
+   "lemma": "playa",
+   "mp4": 54056,
+   "jpg": 24106
+  },
+  "montana": {
+   "src": "montana-naturaleza",
+   "lemma": "3Androides",
+   "mp4": 57267,
+   "jpg": 19555
+  },
+  "perro": {
+   "src": "perro",
+   "lemma": "perro",
+   "mp4": 34250,
+   "jpg": 20896
+  },
+  "gato": {
+   "src": "gato",
+   "lemma": "gato",
+   "mp4": 50199,
+   "jpg": 20562
+  },
+  "pajaro": {
+   "src": "pajaro",
+   "lemma": "3Androides",
+   "mp4": 49052,
+   "jpg": 16986
+  },
+  "caballo": {
+   "src": "caballo",
+   "lemma": "caballo",
+   "mp4": 36552,
+   "jpg": 22419
+  },
+  "rojo": {
+   "src": "rojo",
+   "lemma": "rojo",
+   "mp4": 27092,
+   "jpg": 19662
+  },
+  "azul": {
+   "src": "azul",
+   "lemma": "azul",
+   "mp4": 32152,
+   "jpg": 24409
+  },
+  "verde": {
+   "src": "verde",
+   "lemma": "verde",
+   "mp4": 36997,
+   "jpg": 19756
+  },
+  "amarillo": {
+   "src": "amarillo",
+   "lemma": "amarillo",
+   "mp4": 33193,
+   "jpg": 22808
+  },
+  "negro": {
+   "src": "negro-color",
+   "lemma": "negro",
+   "mp4": 33802,
+   "jpg": 22358
+  },
+  "blanco": {
+   "src": "blanco-color",
+   "lemma": "blanco",
+   "mp4": 32463,
+   "jpg": 23051
+  },
+  "color": {
+   "src": "color",
+   "lemma": "color",
+   "mp4": 32030,
+   "jpg": 22639
+  },
+  "feliz": {
+   "src": "feliz",
+   "lemma": "feliz",
+   "mp4": 37642,
+   "jpg": 25716
+  },
+  "triste": {
+   "src": "triste_bim",
+   "lemma": "triste",
+   "mp4": 36208,
+   "jpg": 15743
+  },
+  "cansado": {
+   "src": "cansado-fisico",
+   "lemma": "cansado",
+   "mp4": 33961,
+   "jpg": 21495
+  },
+  "enfadado": {
+   "src": "enfadado",
+   "lemma": "enfadado",
+   "mp4": 40077,
+   "jpg": 19782
+  },
+  "nervioso": {
+   "src": "nervioso",
+   "lemma": "nervioso",
+   "mp4": 39832,
+   "jpg": 21295
+  },
+  "miedo": {
+   "src": "miedo",
+   "lemma": "miedo",
+   "mp4": 22838,
+   "jpg": 21596
+  },
+  "amor": {
+   "src": "amor",
+   "lemma": "amor",
+   "mp4": 31971,
+   "jpg": 21962
+  },
+  "bonito": {
+   "src": "bonito",
+   "lemma": "bonito",
+   "mp4": 31976,
+   "jpg": 17025
+  },
+  "grande": {
+   "src": "grande",
+   "lemma": "grande",
+   "mp4": 32963,
+   "jpg": 20845
+  },
+  "pequeno": {
+   "src": "pequeno-cosa",
+   "lemma": "3Androides",
+   "mp4": 30063,
+   "jpg": 21075
+  },
+  "nuevo": {
+   "src": "nuevo",
+   "lemma": "nuevo",
+   "mp4": 31894,
+   "jpg": 26077
+  },
+  "viejo": {
+   "src": "viejo",
+   "lemma": "viejo",
+   "mp4": 27160,
+   "jpg": 18713
+  },
+  "facil": {
+   "src": "facil",
+   "lemma": "3Androides",
+   "mp4": 31633,
+   "jpg": 26300
+  },
+  "dificil": {
+   "src": "dificil",
+   "lemma": "3Androides",
+   "mp4": 40087,
+   "jpg": 18333
+  },
+  "mucho": {
+   "src": "mucho",
+   "lemma": "mucho",
+   "mp4": 32753,
+   "jpg": 23659
+  },
+  "poco": {
+   "src": "poco_a",
+   "lemma": "poco, ca",
+   "mp4": 21147,
+   "jpg": 15756
+  },
+  "mas": {
+   "src": "mas",
+   "lemma": "3Androides",
+   "mp4": 21345,
+   "jpg": 19256
+  },
+  "que": {
+   "src": "que",
+   "lemma": "3Androides",
+   "mp4": 22211,
+   "jpg": 18205
+  },
+  "quien": {
+   "src": "quien",
+   "lemma": "3Androides",
+   "mp4": 22582,
+   "jpg": 19504
+  },
+  "donde": {
+   "src": "donde",
+   "lemma": "3Androides",
+   "mp4": 40290,
+   "jpg": 20837
+  },
+  "cuando": {
+   "src": "cuando-futuro",
+   "lemma": "cuando",
+   "mp4": 29107,
+   "jpg": 17326
+  },
+  "como": {
+   "src": "como",
+   "lemma": "3Androides",
+   "mp4": 33740,
+   "jpg": 20519
+  },
+  "por_que": {
+   "src": "porque_mon",
+   "lemma": "3Androides",
+   "mp4": 27482,
+   "jpg": 26453
+  },
+  "cuanto": {
+   "src": "cuanto-numero",
+   "lemma": "3Androides",
+   "mp4": 27188,
+   "jpg": 21148
+  },
+  "cual": {
+   "src": "cual",
+   "lemma": "3Androides",
+   "mp4": 24417,
+   "jpg": 18263
+  },
+  "bebe": {
+   "src": "bebe",
+   "lemma": "3Androides",
+   "mp4": 41282,
+   "jpg": 23615
+  },
+  "hijo": {
+   "src": "hijo",
+   "lemma": "hijo",
+   "mp4": 28975,
+   "jpg": 16360
+  },
+  "abuelo": {
+   "src": "abuelo",
+   "lemma": "abuelo",
+   "mp4": 36431,
+   "jpg": 22737
+  },
+  "hombre": {
+   "src": "hombre",
+   "lemma": "hombre",
+   "mp4": 38356,
+   "jpg": 18791
+  },
+  "mujer": {
+   "src": "mujer",
+   "lemma": "mujer",
+   "mp4": 42849,
+   "jpg": 21780
+  },
+  "nino": {
+   "src": "nino",
+   "lemma": "3Androides",
+   "mp4": 20513,
+   "jpg": 17890
+  },
+  "novio": {
+   "src": "novio",
+   "lemma": "novio",
+   "mp4": 30987,
+   "jpg": 20010
+  },
+  "vecino": {
+   "src": "vecino",
+   "lemma": "vecino",
+   "mp4": 37450,
+   "jpg": 21312
+  },
+  "oficina": {
+   "src": "oficina",
+   "lemma": "oficina",
+   "mp4": 41020,
+   "jpg": 19758
+  },
+  "ordenador": {
+   "src": "ordenador",
+   "lemma": "ordenador",
+   "mp4": 37077,
+   "jpg": 21884
+  },
+  "cine": {
+   "src": "cine",
+   "lemma": "cine",
+   "mp4": 41194,
+   "jpg": 21454
+  },
+  "musica": {
+   "src": "musica_mon",
+   "lemma": "música",
+   "mp4": 26310,
+   "jpg": 21945
+  },
+  "futbol": {
+   "src": "futbol",
+   "lemma": "3Androides",
+   "mp4": 50421,
+   "jpg": 19062
+  },
+  "nadar": {
+   "src": "nadar",
+   "lemma": "nadar",
+   "mp4": 45884,
+   "jpg": 24510
+  },
+  "correr": {
+   "src": "correr-deporte",
+   "lemma": "correr",
+   "mp4": 32731,
+   "jpg": 24366
+  },
+  "bailar": {
+   "src": "bailar_ma",
+   "lemma": "bailar",
+   "mp4": 33734,
+   "jpg": 23507
+  },
+  "jugar": {
+   "src": "jugar",
+   "lemma": "jugar",
+   "mp4": 41109,
+   "jpg": 20158
+  },
+  "viajar": {
+   "src": "viajar",
+   "lemma": "viajar",
+   "mp4": 66609,
+   "jpg": 24897
+  },
+  "vacaciones": {
+   "src": "vacacion",
+   "lemma": "vacación",
+   "mp4": 31908,
+   "jpg": 20805
+  },
+  "fiesta": {
+   "src": "fiesta",
+   "lemma": "fiesta",
+   "mp4": 33578,
+   "jpg": 22288
+  },
+  "cumpleanos": {
+   "src": "cumpleanos",
+   "lemma": "3Androides",
+   "mp4": 44022,
+   "jpg": 24146
+  },
+  "regalo": {
+   "src": "regalo",
+   "lemma": "regalo",
+   "mp4": 39902,
+   "jpg": 22936
+  },
+  "dolor": {
+   "src": "dolor",
+   "lemma": "dolor",
+   "mp4": 41609,
+   "jpg": 21154
+  },
+  "cabeza": {
+   "src": "cabeza",
+   "lemma": "cabeza",
+   "mp4": 44962,
+   "jpg": 20128
+  },
+  "enfermo": {
+   "src": "enfermo",
+   "lemma": "enfermo",
+   "mp4": 42712,
+   "jpg": 22103
+  },
+  "medicina": {
+   "src": "medicina",
+   "lemma": "medicina",
+   "mp4": 44201,
+   "jpg": 22777
+  },
+  "ayudar": {
+   "src": "ayudar",
+   "lemma": "ayudar",
+   "mp4": 37527,
+   "jpg": 19571
+  },
+  "esperar": {
+   "src": "esperar_b",
+   "lemma": "esperar",
+   "mp4": 32478,
+   "jpg": 17426
+  },
+  "necesitar": {
+   "src": "necesitar",
+   "lemma": "necesitar",
+   "mp4": 19979,
+   "jpg": 19115
+  },
+  "buscar": {
+   "src": "buscar",
+   "lemma": "buscar",
+   "mp4": 28809,
+   "jpg": 20563
+  },
+  "encontrar": {
+   "src": "encontrar_a",
+   "lemma": "encontrar",
+   "mp4": 38895,
+   "jpg": 18315
+  },
+  "pensar": {
+   "src": "pensar",
+   "lemma": "pensar",
+   "mp4": 34928,
+   "jpg": 23669
+  },
+  "olvidar": {
+   "src": "olvidar",
+   "lemma": "olvidar",
+   "mp4": 24837,
+   "jpg": 16508
+  },
+  "recordar": {
+   "src": "recordar-acordar",
+   "lemma": "recordar",
+   "mp4": 25644,
+   "jpg": 21498
+  },
+  "conocer": {
+   "src": "conocer",
+   "lemma": "conocer",
+   "mp4": 34144,
+   "jpg": 21965
+  },
+  "preguntar": {
+   "src": "preguntar",
+   "lemma": "preguntar",
+   "mp4": 22582,
+   "jpg": 23368
+  },
+  "contestar": {
+   "src": "contestar",
+   "lemma": "contestar",
+   "mp4": 40000,
+   "jpg": 19641
+  },
+  "empezar": {
+   "src": "empezar",
+   "lemma": "empezar",
+   "mp4": 41788,
+   "jpg": 22036
+  },
+  "terminar": {
+   "src": "terminar",
+   "lemma": "terminar",
+   "mp4": 33690,
+   "jpg": 23007
+  },
+  "llegar": {
+   "src": "llegar_B",
+   "lemma": "llegar",
+   "mp4": 40162,
+   "jpg": 23349
+  },
+  "salir": {
+   "src": "salir",
+   "lemma": "salir",
+   "mp4": 31366,
+   "jpg": 22647
+  },
+  "entrar": {
+   "src": "entrar",
+   "lemma": "entrar",
+   "mp4": 35143,
+   "jpg": 20283
+  },
+  "sentarse": {
+   "src": "sentar",
+   "lemma": "sentar",
+   "mp4": 43455,
+   "jpg": 25910
+  },
+  "levantarse": {
+   "src": "levantar-cama",
+   "lemma": "levantar",
+   "mp4": 28988,
+   "jpg": 20716
+  },
+  "lunes": {
+   "src": "lunes",
+   "lemma": "lunes",
+   "mp4": 39558,
+   "jpg": 22157
+  },
+  "martes": {
+   "src": "martes",
+   "lemma": "martes",
+   "mp4": 35370,
+   "jpg": 22495
+  },
+  "miercoles": {
+   "src": "miercoles",
+   "lemma": "3Androides",
+   "mp4": 37260,
+   "jpg": 23856
+  },
+  "jueves": {
+   "src": "jueves",
+   "lemma": "jueves",
+   "mp4": 33905,
+   "jpg": 21719
+  },
+  "viernes": {
+   "src": "viernes",
+   "lemma": "viernes",
+   "mp4": 32629,
+   "jpg": 20439
+  },
+  "sabado": {
+   "src": "sabado",
+   "lemma": "3Androides",
+   "mp4": 25640,
+   "jpg": 19888
+  },
+  "domingo": {
+   "src": "domingo",
+   "lemma": "domingo",
+   "mp4": 46244,
+   "jpg": 21198
+  },
+  "mes": {
+   "src": "mes",
+   "lemma": "mes",
+   "mp4": 24802,
+   "jpg": 18929
+  },
+  "ano": {
+   "src": "ano-meses",
+   "lemma": "3Androides",
+   "mp4": 41722,
+   "jpg": 22198
+  },
+  "hora": {
+   "src": "hora",
+   "lemma": "hora",
+   "mp4": 40042,
+   "jpg": 19925
+  },
+  "tarde": {
+   "src": "tarde_a",
+   "lemma": "tarde",
+   "mp4": 37623,
+   "jpg": 20257
+  },
+  "temprano": {
+   "src": "temprano",
+   "lemma": "temprano",
+   "mp4": 23965,
+   "jpg": 15709
+  },
+  "siempre": {
+   "src": "siempre",
+   "lemma": "siempre",
+   "mp4": 38026,
+   "jpg": 24998
+  },
+  "nunca": {
+   "src": "nunca_2",
+   "lemma": "nunca",
+   "mp4": 20898,
+   "jpg": 20529
+  },
+  "tambien": {
+   "src": "tambien",
+   "lemma": "3Androides",
+   "mp4": 17956,
+   "jpg": 19469
+  },
+  "igual": {
+   "src": "igual",
+   "lemma": "igual",
+   "mp4": 30690,
+   "jpg": 20136
+  },
+  "diferente": {
+   "src": "diferente",
+   "lemma": "diferente",
+   "mp4": 27527,
+   "jpg": 20379
+  },
+  "importante": {
+   "src": "importante",
+   "lemma": "importante",
+   "mp4": 19174,
+   "jpg": 16847
+  },
+  "verdad": {
+   "src": "verdad_a",
+   "lemma": "verdad",
+   "mp4": 24021,
+   "jpg": 19468
+  },
+  "mentira": {
+   "src": "mentira",
+   "lemma": "mentira",
+   "mp4": 33102,
+   "jpg": 20520
+  },
+  "problema": {
+   "src": "problema",
+   "lemma": "problema",
+   "mp4": 43959,
+   "jpg": 21607
+  },
+  "espana": {
+   "src": "espana",
+   "lemma": "3Androides",
+   "mp4": 24784,
+   "jpg": 21010
+  },
+  "mi": {
+   "src": "mi",
+   "lemma": "mi",
+   "mp4": 26341,
+   "jpg": 20577
+  },
+  "que_tal": {
+   "src": "que_tal",
+   "lemma": "",
+   "mp4": 24204,
+   "jpg": 21793
+  },
+  "encantado": {
+   "src": "encantado",
+   "lemma": "encantado",
+   "mp4": 30312,
+   "jpg": 20776
+  },
+  "buenos_dias": {
+   "src": "dias_buenos",
+   "lemma": "día (buenos días)",
+   "mp4": 62973,
+   "jpg": 23718
+  },
+  "buenas_tardes": {
+   "src": "tardes_buenas",
+   "lemma": "",
+   "mp4": 34221,
+   "jpg": 22199
+  },
+  "buenas_noches": {
+   "src": "noches_buenas",
+   "lemma": "",
+   "mp4": 65603,
+   "jpg": 21888
+  },
+  "hasta_luego": {
+   "src": "luego_hasta",
+   "lemma": "luego (hasta luego)",
+   "mp4": 24837,
+   "jpg": 22676
+  },
+  "hasta_manana": {
+   "src": "manana_hasta",
+   "lemma": "3Androides",
+   "mp4": 63236,
+   "jpg": 18409
+  },
+  "despacio": {
+   "src": "despacio",
+   "lemma": "despacio",
+   "mp4": 60699,
+   "jpg": 19527
+  },
+  "repetir": {
+   "src": "repetir_R",
+   "lemma": "repetir",
+   "mp4": 21247,
+   "jpg": 19077
+  },
+  "de_nada": {
+   "src": "nada_de",
+   "lemma": "nada (de nada)",
+   "mp4": 25957,
+   "jpg": 19629
+  },
+  "perdon": {
+   "src": "perdon-educacion",
+   "lemma": "3Androides",
+   "mp4": 43691,
+   "jpg": 22973
+  },
+  "hambre": {
+   "src": "hambre",
+   "lemma": "hambre",
+   "mp4": 25528,
+   "jpg": 18777
+  },
+  "sed": {
+   "src": "sed",
+   "lemma": "sed",
+   "mp4": 22795,
+   "jpg": 19747
+  },
+  "precio": {
+   "src": "precio",
+   "lemma": "precio",
+   "mp4": 19316,
+   "jpg": 19754
+  },
+  "momento": {
+   "src": "momento-corto",
+   "lemma": "momento",
+   "mp4": 26888,
+   "jpg": 19184
+  },
+  "amar": {
+   "src": "amar",
+   "lemma": "amar",
+   "mp4": 36389,
+   "jpg": 19965
+  },
+  "enhorabuena": {
+   "src": "enhorabuena",
+   "lemma": "enhorabuena",
+   "mp4": 49916,
+   "jpg": 26236
+  },
+  "quedar": {
+   "src": "quedar-cita",
+   "lemma": "quedar",
+   "mp4": 36921,
+   "jpg": 20660
+  },
+  "nosotros": {
+   "src": "nosotros",
+   "lemma": "nosotros",
+   "mp4": 31133,
+   "jpg": 20984
+  },
+  "favorito": {
+   "src": "favorito",
+   "lemma": "favorito",
+   "mp4": 40816,
+   "jpg": 22046
+  },
+  "parada": {
+   "src": "parada",
+   "lemma": "parada",
+   "mp4": 39618,
+   "jpg": 24626
+  },
+  "comida": {
+   "src": "comida",
+   "lemma": "comida",
+   "mp4": 30855,
+   "jpg": 21353
+  },
+  "rico": {
+   "src": "rico-sabor",
+   "lemma": "rico",
+   "mp4": 30582,
+   "jpg": 21108
+  },
+  "tranquilo": {
+   "src": "tranquilo",
+   "lemma": "tranquilo",
+   "mp4": 31804,
+   "jpg": 17237
+  },
+  "signo": {
+   "src": "signo",
+   "lemma": "signo",
+   "mp4": 23393,
+   "jpg": 18906
+  },
+  "significar": {
+   "src": "significar",
+   "lemma": "significar",
+   "mp4": 38262,
+   "jpg": 22722
+  },
+  "pareja": {
+   "src": "pareja",
+   "lemma": "pareja",
+   "mp4": 27221,
+   "jpg": 21446
+  },
+  "dos": {
+   "src": "dos",
+   "lemma": "dos",
+   "mp4": 20587,
+   "jpg": 19959
+  },
+  "que_ha_pasado": {
+   "src": "pasado-que-ha",
+   "lemma": "pasar (¿Qué ha pasado?)",
+   "mp4": 28301,
+   "jpg": 15842
+  },
+  "encantar": {
+   "src": "encantar-gustar",
+   "lemma": "encantar",
+   "mp4": 34835,
+   "jpg": 20273
+  },
+  "juntos": {
+   "src": "junto",
+   "lemma": "junto",
+   "mp4": 27233,
+   "jpg": 15731
+  },
+  "mensaje": {
+   "src": "mensaje",
+   "lemma": "mensaje",
+   "mp4": 42260,
+   "jpg": 21487
+  },
+  "enviar": {
+   "src": "enviar-mensaje",
+   "lemma": "enviar",
+   "mp4": 25404,
+   "jpg": 18717
+  },
+  "fin_de_semana": {
+   "src": "fin_semana",
+   "lemma": "fin (fin de semana)",
+   "mp4": 50582,
+   "jpg": 19193
+  },
+  "bueno": {
+   "src": "bueno_a",
+   "lemma": "bueno",
+   "mp4": 31720,
+   "jpg": 21185
+  },
+  "estacion": {
+   "src": "estacion-tren",
+   "lemma": "3Androides",
+   "mp4": 47741,
+   "jpg": 16490
+  },
+  "deber": {
+   "src": "deber-obligar",
+   "lemma": "deber",
+   "mp4": 34681,
+   "jpg": 17946
+  },
+  "ya": {
+   "src": "ya_e",
+   "lemma": "ya",
+   "mp4": 28350,
+   "jpg": 16956
+  },
+  "cerca": {
+   "src": "cerca_a",
+   "lemma": "cerca",
+   "mp4": 35281,
+   "jpg": 20948
+  },
+  "lejos": {
+   "src": "lejos",
+   "lemma": "lejos",
+   "mp4": 37909,
+   "jpg": 19191
+  },
+  "aqui": {
+   "src": "aqui",
+   "lemma": "3Androides",
+   "mp4": 38813,
+   "jpg": 19965
+  },
+  "otro": {
+   "src": "otro",
+   "lemma": "otro",
+   "mp4": 22277,
+   "jpg": 20274
+  },
+  "vez": {
+   "src": "vez_otra",
+   "lemma": "vez",
+   "mp4": 29132,
+   "jpg": 22421
+  },
+  "edad": {
+   "src": "ano-edad",
+   "lemma": "3Androides",
+   "mp4": 31847,
+   "jpg": 20740
+  },
+  "tu_pos": {
+   "src": "tu2",
+   "lemma": "tu",
+   "mp4": 21228,
+   "jpg": 21075
+  },
+  "tarde_retraso": {
+   "src": "tarde_c",
+   "lemma": "tarde",
+   "mp4": 28752,
+   "jpg": 19595
+  },
+  "cuanto_dinero": {
+   "src": "cuanto-dinero",
+   "lemma": "3Androides",
+   "mp4": 20217,
+   "jpg": 18780
+  },
+  "letra_a": {
+   "src": "a_pf",
+   "lemma": "a",
+   "mp4": 26844,
+   "jpg": 23161
+  },
+  "letra_b": {
+   "src": "b",
+   "lemma": "b",
+   "mp4": 34591,
+   "jpg": 21958
+  },
+  "letra_c": {
+   "src": "c",
+   "lemma": "c",
+   "mp4": 36175,
+   "jpg": 21375
+  },
+  "letra_ch": {
+   "src": "ch",
+   "lemma": "ch",
+   "mp4": 29577,
+   "jpg": 20572
+  },
+  "letra_d": {
+   "src": "d",
+   "lemma": "d",
+   "mp4": 32615,
+   "jpg": 21050
+  },
+  "letra_e": {
+   "src": "e",
+   "lemma": "e",
+   "mp4": 36472,
+   "jpg": 20060
+  },
+  "letra_f": {
+   "src": "f",
+   "lemma": "f",
+   "mp4": 27359,
+   "jpg": 20392
+  },
+  "letra_g": {
+   "src": "g",
+   "lemma": "g",
+   "mp4": 26813,
+   "jpg": 20506
+  },
+  "letra_h": {
+   "src": "h",
+   "lemma": "h",
+   "mp4": 32549,
+   "jpg": 20732
+  },
+  "letra_i": {
+   "src": "i",
+   "lemma": "i",
+   "mp4": 22240,
+   "jpg": 18214
+  },
+  "letra_j": {
+   "src": "j",
+   "lemma": "j",
+   "mp4": 32605,
+   "jpg": 20865
+  },
+  "letra_k": {
+   "src": "k",
+   "lemma": "k",
+   "mp4": 30224,
+   "jpg": 22644
+  },
+  "letra_l": {
+   "src": "l",
+   "lemma": "l",
+   "mp4": 30511,
+   "jpg": 21353
+  },
+  "letra_ll": {
+   "src": "ll",
+   "lemma": "ll",
+   "mp4": 31565,
+   "jpg": 21848
+  },
+  "letra_m": {
+   "src": "m",
+   "lemma": "m",
+   "mp4": 34242,
+   "jpg": 19955
+  },
+  "letra_n": {
+   "src": "n",
+   "lemma": "n",
+   "mp4": 31169,
+   "jpg": 19019
+  },
+  "letra_ny": {
+   "src": "n-fuerte",
+   "lemma": "ñ",
+   "mp4": 31639,
+   "jpg": 19399
+  },
+  "letra_o": {
+   "src": "o",
+   "lemma": "o",
+   "mp4": 25281,
+   "jpg": 20421
+  },
+  "letra_p": {
+   "src": "p",
+   "lemma": "p",
+   "mp4": 21302,
+   "jpg": 21197
+  },
+  "letra_q": {
+   "src": "q",
+   "lemma": "q",
+   "mp4": 18424,
+   "jpg": 16698
+  },
+  "letra_r": {
+   "src": "r",
+   "lemma": "r",
+   "mp4": 20546,
+   "jpg": 16979
+  },
+  "letra_rr": {
+   "src": "rr",
+   "lemma": "rr",
+   "mp4": 25197,
+   "jpg": 19017
+  },
+  "letra_s": {
+   "src": "s",
+   "lemma": "s",
+   "mp4": 23637,
+   "jpg": 21558
+  },
+  "letra_t": {
+   "src": "t",
+   "lemma": "t",
+   "mp4": 22249,
+   "jpg": 16980
+  },
+  "letra_u": {
+   "src": "u",
+   "lemma": "u",
+   "mp4": 21794,
+   "jpg": 18769
+  },
+  "letra_v": {
+   "src": "v",
+   "lemma": "v",
+   "mp4": 30681,
+   "jpg": 20719
+  },
+  "letra_w": {
+   "src": "w",
+   "lemma": "w",
+   "mp4": 25044,
+   "jpg": 21251
+  },
+  "letra_x": {
+   "src": "x",
+   "lemma": "x",
+   "mp4": 19345,
+   "jpg": 19908
+  },
+  "letra_y": {
+   "src": "y",
+   "lemma": "y",
+   "mp4": 19824,
+   "jpg": 14508
+  },
+  "letra_z": {
+   "src": "z",
+   "lemma": "z",
+   "mp4": 22577,
+   "jpg": 18097
+  }
+ },
+ "missing": []
+}
