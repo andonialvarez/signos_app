@@ -31,7 +31,7 @@ Usa la misma cuenta de Play Console que para Phrasal Daily: no hay que pagar otr
 
 ## 3. Anuncios: apagados hasta tener permiso de la CNSE
 
-Los vídeos son del diccionario DILSE de la Fundación CNSE y su licencia (CC BY-NC-SA 3.0) **no permite uso comercial**. Una app con anuncios reales se considera uso comercial, así que la versión de Play sale sin anuncios. Mientras tanto, la versión de Play ni siquiera incluye el SDK de AdMob, así que no pide el identificador de publicidad. Todo lo de AdMob (banner y consentimiento RGPD) está preparado y se activa cambiando una línea.
+Los vídeos son del diccionario DILSE de la Fundación CNSE y su licencia (CC BY-NC-SA 3.0) **no permite uso comercial**. Una app con anuncios reales se considera uso comercial, así que la app sale sin anuncios. Mientras tanto ni siquiera incluye el SDK de AdMob, así que no pide el identificador de publicidad. Todo lo de AdMob (banner y consentimiento RGPD) está preparado y se activa cambiando una línea.
 
 ### Paso 1: pedir permiso (correo listo para copiar)
 
@@ -56,11 +56,11 @@ Envíalo a **fundacion.cnse@fundacioncnse.org**:
 
 1. Entra en https://admob.google.com con tu cuenta (la misma de Phrasal Daily) > **Apps > Añadir app** > Android > Signos Daily.
 2. Crea un **bloque de anuncios** de tipo **Banner**.
-3. Pásame el **ID de aplicación** (`ca-app-pub-…~…`) y el del **banner** (`ca-app-pub-…/…`). Los pongo en `gradle.properties` y cambio `playAdsEnabled=true`. No son secretos.
+3. Pásame el **ID de aplicación** (`ca-app-pub-…~…`) y el del **banner** (`ca-app-pub-…/…`). Los pongo en `gradle.properties` y cambio `adsEnabled=true`. No son secretos.
 4. En **Privacidad y mensajes**, crea y publica el mensaje de **RGPD** para la app.
 5. Actualizo PRIVACY.md y la ficha de Play ("Contiene anuncios") antes de publicar esa versión.
 
-> **Nunca pulses tus propios anuncios reales**: AdMob puede cerrarte la cuenta. La versión de GitHub muestra siempre anuncios de prueba ("Test Ad"), que no generan ingresos.
+> **Nunca pulses tus propios anuncios reales**: AdMob puede cerrarte la cuenta. Con los anuncios activados, la versión de GitHub muestra siempre anuncios de prueba ("Test Ad"), que no generan ingresos.
 
 ## 4. Formularios de Play Console (versión sin anuncios)
 
@@ -91,6 +91,7 @@ Envíalo a **fundacion.cnse@fundacioncnse.org**:
 > • Estadísticas semanales, mensuales y calendario de estudio
 > • Repasos tipo test: qué significa este signo, cuál es su foto, en qué orden se signa
 > • Biblioteca con buscador y favoritos
+> • Abecedario dactilológico: escribe una palabra y mírala deletreada
 > • Funciona sin conexión con los signos que ya has visto
 > • Te llama por tu nombre, con tema claro u oscuro
 >

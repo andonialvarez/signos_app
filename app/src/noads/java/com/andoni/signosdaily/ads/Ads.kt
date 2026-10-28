@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 /**
- * Play build without ads (playAdsEnabled=false): same API as the AdMob version, but the
+ * Build without ads (adsEnabled=false): same API as the AdMob version, but the
  * AdMob SDK is not even included, so the app collects nothing for advertising.
  */
 object Ads {

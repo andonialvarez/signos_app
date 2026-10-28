@@ -12,6 +12,7 @@ App Android para aprender lengua de signos española (LSE) un poco cada día: un
 - **Estadísticas**: días esta semana, este mes, total y calendario mensual.
 - **Repaso** tipo test: qué significa un signo (vídeo), cuál es la foto de una palabra y en qué orden se signa una frase.
 - **Biblioteca** con buscador, favoritos y "por aprender".
+- **Abecedario dactilológico** en la Biblioteca: cada letra en vídeo y un campo para escribir una palabra (tu nombre, por ejemplo) y verla deletreada letra a letra.
 - **Sin conexión**: cada vídeo se descarga una vez y se queda en el móvil; en Ajustes puedes descargarlos todos.
 - **Perfil**: te saluda por tu nombre. Tema claro/oscuro y reinicio de progreso.
 
@@ -25,7 +26,7 @@ El workflow **Vídeos de los signos** (`.github/workflows/media.yml`) busca cada
 
 Las glosas, notas de gramática y pistas son de esta app, no del diccionario.
 
-Como la licencia de los vídeos no permite uso comercial, **la versión de Google Play no muestra anuncios** (`playAdsEnabled=false` en `gradle.properties`) hasta tener permiso por escrito de la Fundación CNSE. La guía de Play incluye el correo para pedirlo.
+Como la licencia de los vídeos no permite uso comercial, **la app no muestra anuncios** (`adsEnabled=false` en `gradle.properties`) hasta tener permiso por escrito de la Fundación CNSE. La guía de Play incluye el correo para pedirlo.
 
 ## Instalar en el móvil y recibir actualizaciones automáticas
 
@@ -37,7 +38,7 @@ Cada push a `main` lanza GitHub Actions, que compila el APK y lo publica como *R
 
 ## Google Play
 
-La versión `play` no se actualiza sola (lo prohíbe Google Play) y, mientras `playAdsEnabled=false`, no incluye AdMob (`app/src/noads`); el banner con consentimiento RGPD está listo en `app/src/ads` y la versión de GitHub lo usa con anuncios de prueba. Requisitos y pasos: [PUBLICAR_EN_GOOGLE_PLAY.md](PUBLICAR_EN_GOOGLE_PLAY.md). Privacidad: [PRIVACY.md](PRIVACY.md).
+La versión `play` no se actualiza sola (lo prohíbe Google Play). Mientras `adsEnabled=false`, ninguna versión incluye AdMob (`app/src/noads`). El banner con consentimiento RGPD está listo en `app/src/ads`: con `adsEnabled=true`, la versión de GitHub muestra anuncios de prueba y la de Play anuncios reales. Requisitos y pasos: [PUBLICAR_EN_GOOGLE_PLAY.md](PUBLICAR_EN_GOOGLE_PLAY.md). Privacidad: [PRIVACY.md](PRIVACY.md).
 
 ## Compilar en local
 

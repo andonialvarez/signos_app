@@ -25,6 +25,10 @@ on:
         description: Guardar en el informe las páginas de búsqueda de estas claves (y repetirlas)
         type: string
         default: ""
+      review:
+        description: Buscar también los signos ya publicados para revisar sus acepciones en el informe
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -62,11 +66,13 @@ jobs:
           ONLY: ${{ inputs.only }}
           FORCE: ${{ inputs.force }}
           DUMP: ${{ inputs.dump }}
+          REVIEW: ${{ inputs.review }}
         run: |
           python .github/scripts/media.py \
             --content app/src/main/assets/content.json \
             --old old/manifest.json --out out --report report \
-            --only "$ONLY" --dump "$DUMP" $([ "$FORCE" = "true" ] && echo --force)
+            --only "$ONLY" --dump "$DUMP" \
+            $([ "$FORCE" = "true" ] && echo --force) $([ "$REVIEW" = "true" ] && echo --review)
 
       - name: Publish to the media release
         run: |

@@ -3,6 +3,7 @@ package com.andoni.signosdaily.data
 import android.content.Context
 import org.json.JSONArray
 import org.json.JSONObject
+import java.text.Normalizer
 
 enum class ItemType { WORD, EXPRESSION }
 
@@ -56,6 +57,8 @@ class ContentRepository(context: Context) {
 
     val words: List<Word>
     val expressions: List<Expression>
+    /** Fingerspelling alphabet, in order; CH, LL and RR are letters of their own in LSE. */
+    val letters: List<SignRef>
     private val signsByKey: Map<String, SignRef>
 
     init {
@@ -78,6 +81,12 @@ class ContentRepository(context: Context) {
 
         val extra = json.getJSONObject("signs")
         extra.keys().forEach { key -> signs.getOrPut(key) { signRef(key, extra.getJSONObject(key)) } }
+
+        val lettersJson = json.optJSONArray("letters") ?: JSONArray()
+        letters = List(lettersJson.length()) { i ->
+            val o = lettersJson.getJSONObject(i)
+            signRef(o.getString("key"), o).also { signs[o.getString("key")] = it }
+        }
         signsByKey = signs
 
         val exJson = json.getJSONArray("expressions")
@@ -107,6 +116,27 @@ class ContentRepository(context: Context) {
     }
 
     val allMediaKeys: Set<String> get() = signsByKey.keys
+
+    /** The letters to fingerspell [text]: accents are dropped (except in Ñ) and CH, LL, RR go as one letter. */
+    fun spell(text: String): List<SignRef> {
+        val byLabel = letters.associateBy { it.label }
+        val upper = text.uppercase()
+        val out = mutableListOf<SignRef>()
+        var i = 0
+        while (i < upper.length) {
+            val pair = if (i + 1 < upper.length) byLabel[upper.substring(i, i + 2)] else null
+            if (pair != null) {
+                out += pair
+                i += 2
+                continue
+            }
+            val c = upper[i]
+            val plain = if (c == 'Ñ') "Ñ" else Normalizer.normalize(c.toString(), Normalizer.Form.NFD).filter(Char::isLetter)
+            byLabel[plain]?.let(out::add)
+            i++
+        }
+        return out
+    }
 
     fun wordForDay(dayIndex: Long): Word = words[Math.floorMod(dayIndex, words.size.toLong()).toInt()]
 

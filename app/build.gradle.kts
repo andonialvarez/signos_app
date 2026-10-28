@@ -6,9 +6,9 @@ plugins {
 
 fun prop(name: String) = (project.findProperty(name) as String?)?.takeIf { it.isNotBlank() }
 
-// The sign videos come from DILSE (CC BY-NC-SA: no commercial use), so the Play build has no ads,
-// and not even the AdMob SDK, until the Fundación CNSE allows them (gradle.properties).
-val playAdsEnabled = prop("playAdsEnabled")?.toBoolean() ?: false
+// The sign videos come from DILSE (CC BY-NC-SA: no commercial use), so the app has no ads,
+// and not even the AdMob SDK, until the Fundación CNSE allows them (adsEnabled in gradle.properties).
+val adsEnabled = prop("adsEnabled")?.toBoolean() ?: false
 
 android {
     namespace = "com.andoni.signosdaily"
@@ -54,22 +54,21 @@ android {
     flavorDimensions += "distribution"
     productFlavors {
         // Installed from the GitHub download link; updates itself from GitHub Releases.
-        // Always shows test ads, so clicking them on your own phone is safe (and earns nothing).
+        // With ads on it always shows test ads, so clicking them on your own phone is safe (and earns nothing).
         create("github") {
             dimension = "distribution"
             buildConfigField("boolean", "SELF_UPDATE", "true")
-            buildConfigField("boolean", "ADS_ENABLED", "true")
+            buildConfigField("boolean", "ADS_ENABLED", adsEnabled.toString())
             buildConfigField("boolean", "ADS_REQUIRE_CONSENT", "false")
             buildConfigField("String", "ADMOB_BANNER_ID", "\"$testBannerId\"")
             manifestPlaceholders["admobAppId"] = testAdmobAppId
             signingConfig = signingConfigs.getByName("debug")
         }
-        // Published on Google Play: Play handles updates, so no self-update. Real ads stay off
-        // (playAdsEnabled=false) while the videos are under DILSE's non-commercial licence.
+        // Published on Google Play: Play handles updates, so no self-update. Real ads once adsEnabled=true.
         create("play") {
             dimension = "distribution"
             buildConfigField("boolean", "SELF_UPDATE", "false")
-            buildConfigField("boolean", "ADS_ENABLED", playAdsEnabled.toString())
+            buildConfigField("boolean", "ADS_ENABLED", adsEnabled.toString())
             buildConfigField("boolean", "ADS_REQUIRE_CONSENT", "true")
             buildConfigField("String", "ADMOB_BANNER_ID", "\"${prop("admobBannerId") ?: testBannerId}\"")
             manifestPlaceholders["admobAppId"] = prop("admobAppId") ?: testAdmobAppId
@@ -79,8 +78,7 @@ android {
 
     // Ads.kt with AdMob, or a stub without it.
     sourceSets {
-        getByName("github").java.srcDir("src/ads/java")
-        getByName("play").java.srcDir(if (playAdsEnabled) "src/ads/java" else "src/noads/java")
+        getByName("main").java.srcDir(if (adsEnabled) "src/ads/java" else "src/noads/java")
     }
 
     buildTypes {
@@ -120,13 +118,9 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.5")
     implementation("androidx.datastore:datastore-preferences:1.1.1")
     implementation("androidx.media3:media3-exoplayer:1.5.1")
-    val admob = "com.google.android.gms:play-services-ads:25.5.0"
-    val ump = "com.google.android.ump:user-messaging-platform:4.0.0"
-    "githubImplementation"(admob)
-    "githubImplementation"(ump)
-    if (playAdsEnabled) {
-        "playImplementation"(admob)
-        "playImplementation"(ump)
+    if (adsEnabled) {
+        implementation("com.google.android.gms:play-services-ads:25.5.0")
+        implementation("com.google.android.ump:user-messaging-platform:4.0.0")
     }
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.material3:material3")

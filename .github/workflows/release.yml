@@ -34,9 +34,10 @@ jobs:
           if grep -q "REQUEST_INSTALL_PACKAGES" perms.txt; then
             echo "::error::The Play build must not request permission to install packages"; exit 1
           fi
-          # Without ads the Play build leaves AdMob out, so it must not ask for the advertising ID either.
-          if ! grep -q "^playAdsEnabled=true" gradle.properties && grep -q "AD_ID" perms.txt; then
-            echo "::error::The Play build has no ads, so it must not request the advertising ID"; exit 1
+          # Without ads the app leaves AdMob out, so neither build may ask for the advertising ID.
+          "$AAPT" dump permissions app/build/outputs/apk/github/release/app-github-release.apk >> perms.txt
+          if ! grep -q "^adsEnabled=true" gradle.properties && grep -q "AD_ID" perms.txt; then
+            echo "::error::The app has no ads, so it must not request the advertising ID"; exit 1
           fi
 
       # Google Play bundle: only when the upload key secrets exist (see PUBLICAR_EN_GOOGLE_PLAY.md).

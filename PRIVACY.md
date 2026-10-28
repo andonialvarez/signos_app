@@ -23,15 +23,15 @@ Los vídeos proceden del Diccionario de la Lengua de Signos Española (DILSE) de
 
 ## Anuncios
 
-**La versión de Google Play no muestra anuncios** y no incluye ningún SDK de publicidad, así que no se recogen datos para publicidad ni se usa el identificador de publicidad. Si en el futuro se activan los anuncios, se actualizará esta política antes de hacerlo y la app pedirá tu consentimiento cuando haga falta.
+**La app no muestra anuncios** y no incluye ningún SDK de publicidad, así que no se recogen datos para publicidad ni se usa el identificador de publicidad. Si en el futuro se activan los anuncios, se actualizará esta política antes de hacerlo y la app pedirá tu consentimiento cuando haga falta.
 
-La versión que se descarga desde GitHub muestra solo anuncios de prueba de Google AdMob, que no generan ingresos. Para mostrarlos, el SDK de Google recoge automáticamente tu dirección IP, el identificador de publicidad, interacciones con los anuncios y datos de diagnóstico. Más información: https://policies.google.com/technologies/partner-sites. Esa versión además consulta GitHub para saber si hay una versión nueva de la app.
+La versión que se descarga desde GitHub consulta además GitHub para saber si hay una versión nueva de la app.
 
 Si tienes activada la copia de seguridad de Android, el sistema puede incluir los datos de la app en tu copia de seguridad de Google, según tu configuración de Android.
 
 ## Permisos
 
-- **Internet**: para descargar los vídeos de los signos (y los anuncios de prueba en la versión de GitHub).
+- **Internet**: para descargar los vídeos de los signos (y, en la versión de GitHub, las actualizaciones).
 - **Notificaciones**: para enviarte el recordatorio diario. Puedes desactivarlo en Ajustes.
 - **Inicio del dispositivo**: para volver a programar el recordatorio cuando reinicias el móvil.
 
@@ -55,4 +55,4 @@ Si tienes dudas sobre esta política, abre una incidencia en https://github.com/
 
 # Signos Daily privacy policy (English)
 
-Signos Daily stores your name, settings, learning progress and the sign videos you have watched **only on your device**. It has no accounts or analytics of its own. To show the signs it downloads videos and photos from GitHub, which receives technical data such as your IP address; your name and progress are never sent. The videos come from the DILSE dictionary by Fundación CNSE. The Google Play version shows no ads and includes no advertising SDK, so no advertising data is collected and the advertising ID is not used; this policy will be updated before ads are ever enabled. The version downloaded from GitHub shows AdMob test ads only, whose SDK collects IP address, advertising ID, ad interactions and diagnostics. The app uses notifications for the daily reminder and the boot event to reschedule it. No data is sold or shared. Reset your progress or delete downloaded videos in Settings, or uninstall the app to delete everything. Contact: https://github.com/andonialvarez/signos_app/issues.
+Signos Daily stores your name, settings, learning progress and the sign videos you have watched **only on your device**. It has no accounts or analytics of its own. To show the signs it downloads videos and photos from GitHub, which receives technical data such as your IP address; your name and progress are never sent. The videos come from the DILSE dictionary by Fundación CNSE. The app shows no ads and includes no advertising SDK, so no advertising data is collected and the advertising ID is not used; this policy will be updated before ads are ever enabled. The version downloaded from GitHub also checks GitHub for app updates. The app uses notifications for the daily reminder and the boot event to reschedule it. No data is sold or shared. Reset your progress or delete downloaded videos in Settings, or uninstall the app to delete everything. Contact: https://github.com/andonialvarez/signos_app/issues.

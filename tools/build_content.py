@@ -31,7 +31,7 @@ W = [
     ("casa", "La casa", "Recuerda el tejado de una casa: las manos se juntan por arriba.", None, None, None),
     ("yo", "Personas", "Los pronombres se signan señalando: para «yo», te señalas a ti.", None, None, None),
     ("tú", "Personas", "Para «tú», señalas a la persona con la que hablas.", ["tú", "tu"], "tu", None),
-    ("nombre", "Presentarse", "Tu nombre se deletrea con el alfabeto dactilológico. Muchas personas sordas tienen además un signo-nombre que les pone su comunidad.", None, None, None),
+    ("nombre", "Presentarse", "Tu nombre se deletrea con el alfabeto dactilológico (lo tienes en Biblioteca > Abecedario). Muchas personas sordas tienen además un signo-nombre que les pone su comunidad.", None, None, None),
     ("gracias", "Cortesía", "", None, None, None),
     ("coche", "Transporte", "Recuerda el gesto de sujetar un volante.", None, None, None),
     ("bien", "Básicos", "", None, None, None),
@@ -68,7 +68,7 @@ W = [
     ("libro", "Ocio", "Recuerda un libro que se abre.", None, None, None),
     ("escribir", "Comunicación", "Recuerda el gesto de escribir con un lápiz.", None, None, None),
     ("leer", "Comunicación", "", None, None, None),
-    ("hablar", "Comunicación", "", None, None, None),
+    ("hablar", "Comunicación", "Es «hablar» de conversar con alguien. Hablar con la voz y signar tienen sus propios signos.", None, None, None),
     ("mirar", "Verbos", "La mirada sale de los ojos: fíjate en dónde empieza el signo.", ["mirar", "ver"], None, None),
     ("escuchar", "Verbos", "Fíjate en que se signa junto a la oreja.", ["escuchar", "oír"], None, None),
     ("querer", "Verbos", "Es «querer» de desear algo. Para «te quiero» hay otro signo.", None, None, None),
@@ -118,7 +118,7 @@ W = [
     ("puerta", "La casa", "", None, None, None),
     ("ventana", "La casa", "", None, None, None),
     ("llave", "La casa", "Recuerda el gesto de girar una llave en la cerradura.", None, None, None),
-    ("lavar", "Rutina", "", None, None, None),
+    ("lavarse las manos", "Rutina", "", ["lavarse las manos", "lavar"], "lavar", "LAVARSE-LAS-MANOS"),
     ("peinarse", "Rutina", "Recuerda el gesto de pasarse el peine.", ["peinar", "peine", "peinarse"], None, "PEINARSE"),
     ("vestirse", "Rutina", "", ["vestir", "vestirse"], None, "VESTIRSE"),
     ("ropa", "Ropa", "", None, None, None),
@@ -228,7 +228,7 @@ W = [
     ("mes", "Tiempo", "", None, None, None),
     ("año", "Tiempo", "", None, None, None),
     ("hora", "Tiempo", "", None, None, None),
-    ("tarde", "Tiempo", "Ojo: «tarde» (después de la hora) y «la tarde» (parte del día) pueden signarse distinto.", None, None, None),
+    ("tarde", "Tiempo", "Este es «la tarde», la parte del día. «Llegar tarde» se signa distinto: lo verás en «Llego tarde».", None, None, None),
     ("temprano", "Tiempo", "", None, None, None),
     ("siempre", "Tiempo", "", None, None, None),
     ("nunca", "Tiempo", "", None, None, None),
@@ -290,11 +290,21 @@ EXTRA = {
     "otro": ("OTRO", ["otro"]),
     "vez": ("VEZ", ["vez"]),
     "edad": ("EDAD", ["edad", "año"]),
+    "tu_pos": ("TU", ["tu"]),
+    "tarde_retraso": ("TARDE", ["tarde"]),
     "cuanto_dinero": ("¿CUÁNTO?", ["cuánto", "cuanto"]),
 }
 
 # DILSE file for signs whose automatic match is ambiguous (see the media-report branch).
 FILES = {
+    "tu": "tu1",
+    "tu_pos": "tu2",
+    "hablar": "hablar-charlar_1",
+    "lavar": "lavarse-manos",
+    "poco": "poco_a",
+    "momento": "momento-corto",
+    "tarde": "tarde_a",
+    "tarde_retraso": "tarde_c",
     "querer": "querer-desear",
     "poder": "poder-capacidad",
     "blanco": "blanco-color",
@@ -315,6 +325,17 @@ FILES = {
     "hasta_manana": "manana_hasta",
 }
 
+# Fingerspelling alphabet: (letter, DILSE queries). The definition must mention "letra".
+LETTERS = [
+    ("A", ["a"]), ("B", ["b", "be"]), ("C", ["c", "ce"]), ("CH", ["ch", "che"]), ("D", ["d", "de"]),
+    ("E", ["e"]), ("F", ["f", "efe"]), ("G", ["g", "ge"]), ("H", ["h", "hache"]), ("I", ["i"]),
+    ("J", ["j", "jota"]), ("K", ["k", "ka"]), ("L", ["l", "ele"]), ("LL", ["ll", "elle"]), ("M", ["m", "eme"]),
+    ("N", ["n", "ene"]), ("Ñ", ["ñ", "eñe"]), ("O", ["o"]), ("P", ["p", "pe"]), ("Q", ["q", "cu"]),
+    ("R", ["r", "erre"]), ("RR", ["rr", "erre doble"]), ("S", ["s", "ese"]), ("T", ["t", "te"]), ("U", ["u"]),
+    ("V", ["v", "uve"]), ("W", ["w", "uve doble"]), ("X", ["x", "equis"]), ("Y", ["y", "ye", "i griega"]),
+    ("Z", ["z", "zeta"]),
+]
+
 NAME = "#(deletrea tu nombre)"
 ORDER_V = "En LSE el verbo suele ir al final de la frase."
 NO_SER = "En LSE no hace falta el verbo «ser» o «estar»: basta con poner juntas las dos ideas."
@@ -327,9 +348,9 @@ INTENS = "La intensidad («muy», «mucho») se expresa con la cara y con un mov
 
 E = [
     ("Me llamo…", "Presentarse", ["mi", "nombre", NAME],
-     "En LSE no hay verbo «llamarse»: se dice MI NOMBRE y se deletrea con el alfabeto dactilológico. Muchas personas sordas tienen también un signo-nombre."),
+     "En LSE no hay verbo «llamarse»: se dice MI NOMBRE y se deletrea con el alfabeto dactilológico. Prueba a deletrear el tuyo en Biblioteca > Abecedario. Muchas personas sordas tienen también un signo-nombre."),
     ("¿Qué tal estás?", "Saludos", ["tu", "que_tal"], "Acompaña la pregunta con la cara: cejas y mirada hacia la otra persona."),
-    ("¿Cómo te llamas?", "Presentarse", ["tu", "nombre", "cual"], WH_END),
+    ("¿Cómo te llamas?", "Presentarse", ["tu_pos", "nombre", "cual"], WH_END),
     ("Estoy bien, gracias", "Saludos", ["yo", "bien", "gracias"], NO_SER),
     ("Buenos días", "Saludos", ["buenos_dias"], "Es un saludo con su propio signo; acompáñalo con una sonrisa."),
     ("¿Eres sordo?", "Presentarse", ["tu", "sordo"], YESNO),
@@ -361,7 +382,7 @@ E = [
     ("Mañana va a llover", "Tiempo atmosférico", ["manana", "llover"], TIME_FIRST),
     ("Hoy hace sol", "Tiempo atmosférico", ["hoy", "sol"], TIME_FIRST),
     ("¿Qué hora es?", "Tiempo", ["hora", "que"], WH_END),
-    ("¿Cuántos años tienes?", "Presentarse", ["tu", "edad", "cuanto"], WH_END),
+    ("¿Cuántos años tienes?", "Presentarse", ["tu_pos", "edad", "cuanto"], WH_END),
     ("¿Dónde está el baño?", "Lugares", ["bano", "donde"], WH_END),
     ("¿Qué quieres comer?", "Comida", ["tu", "comer", "querer", "que"], WH_END),
     ("Quiero agua, por favor", "Comida", ["agua", "querer", "por_favor"], TOPIC),
@@ -390,7 +411,7 @@ E = [
     ("Mi color favorito es el azul", "Colores", ["mi", "color", "favorito", "azul"], NO_SER),
     ("¿Dónde está la parada del autobús?", "Transporte", ["autobus", "parada", "donde"], WH_END),
     ("Voy en tren", "Transporte", ["yo", "tren", "ir"], ORDER_V),
-    ("Llego tarde", "Tiempo", ["yo", "llegar", "tarde"], ""),
+    ("Llego tarde", "Tiempo", ["yo", "llegar", "tarde_retraso"], ""),
     ("¿A qué hora empieza?", "Tiempo", ["empezar", "hora", "que"], WH_END),
     ("Ya he terminado", "Tiempo", ["terminar", "ya"], "El verbo no cambia con el tiempo: «ya» indica que la acción está acabada."),
     ("Abre la puerta, por favor", "La casa", ["puerta", "abrir", "por_favor"], TOPIC),
@@ -484,6 +505,15 @@ def main(out_path):
         extra[key] = {"label": label, "q": q}
         if key in FILES:
             extra[key]["file"] = FILES[key]
+    letters = []
+    for letter, q in LETTERS:
+        key = "letra_" + slug(letter.replace("Ñ", "ny"))
+        assert key not in keys, f"duplicate key {key}"
+        keys[key] = letter
+        item = {"key": key, "label": letter, "q": q, "sense": "letra"}
+        if key in FILES:
+            item["file"] = FILES[key]
+        letters.append(item)
     used = set()
     exprs = []
     for es, cat, signs, note in E:
@@ -507,6 +537,9 @@ def main(out_path):
     lines.append('  "signs": {')
     lines.append(",\n".join(f"    {json.dumps(k)}: {json.dumps(v, ensure_ascii=False)}" for k, v in extra.items()))
     lines.append("  },")
+    lines.append('  "letters": [')
+    lines.append(",\n".join("    " + json.dumps(x, ensure_ascii=False) for x in letters))
+    lines.append("  ],")
     lines.append('  "expressions": [')
     lines.append(",\n".join("    " + json.dumps(x, ensure_ascii=False) for x in exprs))
     lines.append("  ]")
@@ -514,7 +547,7 @@ def main(out_path):
     text = "\n".join(lines) + "\n"
     json.loads(text)
     open(out_path, "w", encoding="utf-8").write(text)
-    print(f"{len(words)} words, {len(extra)} extra signs, {len(exprs)} expressions, {len(keys)} media keys")
+    print(f"{len(words)} words, {len(extra)} extra signs, {len(letters)} letters, {len(exprs)} expressions, {len(keys)} media keys")
     words_in_expr = {s for e in exprs for s in e["signs"] if not s.startswith("#")} & {w["key"] for w in words}
     print(f"{len(words_in_expr)} words appear in expressions")
 

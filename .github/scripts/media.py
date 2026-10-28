@@ -28,7 +28,11 @@ import urllib.request
 BASE = "https://fundacioncnse-dilse.org/"
 UA = "SignosDaily/1.0 (+https://github.com/andonialvarez/signos_app; app educativa sin ánimo de lucro)"
 MEDIA_RE = re.compile(r"""(?:https?://[^"'\s>]*?/)?bddilse/images/stories/([^"'<>?#]+?)\.(mov|mp4|m4v|png|jpg|jpeg)""", re.I)
-BOLD_RE = re.compile(r"<(b|strong)\b[^>]*>(.*?)</\1>", re.I | re.S)
+# Each result: <h2 class="title">lemma</h2> … stories/<name>.png … <p class="parrafo_descripcion">definition</p>
+ENTRY_RE = re.compile(
+    r"""<h2 class="title">(.*?)</h2>.*?bddilse/images/stories/([^"'<>?#]+?)\.(?:png|jpe?g)["'].*?parrafo_descripcion">(.*?)</p>""",
+    re.I | re.S,
+)
 NOT_FOUND = "No se ha encontrado ningún resultado"
 # Suffixes DILSE uses for variants of the same sign: one or two hands, letters, numbers.
 VARIANT = {"mon", "bim", "ma", "mp"}
@@ -40,8 +44,23 @@ def norm(s):
     return re.sub(r"[^a-z0-9]+", " ", s).strip()
 
 
-def strip_tags(s):
-    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", s))).strip()
+def strip_tags(s, sep=" "):
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", sep, s))).strip()
+
+
+def unmangle(s):
+    """DILSE stores some text encoded twice ("dÃ­a"); undo it when possible."""
+    try:
+        return s.encode("latin-1").decode("utf-8")
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return s
+
+
+def split_lemma(lemma):
+    """"tarde (buenas tardes)" -> ("tarde", "buenas tardes"); "bueno, na" -> ("bueno", "")."""
+    m = re.match(r"\s*([^(]*?)\s*(?:\((.*)\))?\s*$", lemma)
+    main, sub = (m.group(1), m.group(2) or "") if m else (lemma, "")
+    return main.split(",")[0].strip(), sub.strip()
 
 
 def fetch(url, binary=False, tries=3):
@@ -81,35 +100,52 @@ def search(term):
 
 
 def candidates(page):
-    """Media found on a result page, in order, with the bold lemma that precedes each one."""
-    bolds = [(m.start(), strip_tags(m.group(2))) for m in BOLD_RE.finditer(page)]
+    """Media found on a result page, in order, with the lemma and definition of each entry."""
+    info = {}
+    for m in ENTRY_RE.finditer(page):
+        name = urllib.parse.unquote(m.group(2))
+        info.setdefault(name, (unmangle(strip_tags(m.group(1), "")), unmangle(strip_tags(m.group(3)))))
     found = {}
     for m in MEDIA_RE.finditer(page):
         name = urllib.parse.unquote(m.group(1))
         ext = m.group(2).lower()
-        entry = found.setdefault(name, {"name": name, "video": None, "photo": None, "lemma": "", "context": ""})
+        lemma, definition = info.get(name, ("", ""))
+        entry = found.setdefault(name, {"name": name, "video": None, "photo": None, "lemma": lemma, "context": definition})
         url = urllib.parse.urljoin(BASE, m.group(0))
         if ext in ("mov", "mp4", "m4v"):
             entry["video"] = entry["video"] or url
         else:
             entry["photo"] = entry["photo"] or url
-        if not entry["lemma"]:
-            before = [b for b in bolds if b[0] < m.start()]
-            if before:
-                pos, lemma = before[-1]
-                entry["lemma"] = lemma
-                entry["context"] = strip_tags(page[pos:pos + 600])[:160]
     return [c for c in found.values() if c["video"]]
 
 
-def score(cand, term):
+def suggest(term):
+    """DILSE's autocomplete, which knows entries that the search page sometimes misses."""
+    q = urllib.parse.quote(term)
+    try:
+        data = json.loads(fetch(f"{BASE}php/buscador-autocompletar_nuevo.php?buscar={q}&term={q}"))
+    except Exception as e:  # noqa: BLE001
+        print(f"  ! autocompletar: {e}")
+        return [], ""
+    out = []
+    for item in data if isinstance(data, list) else []:
+        if isinstance(item, dict):
+            text = item.get("value") or item.get("label") or item.get("entrada") or ""
+            out.append((unmangle(strip_tags(str(text), "")), str(item.get("parametros") or "")))
+        elif isinstance(item, str):
+            out.append((unmangle(strip_tags(item, "")), ""))
+    return out, json.dumps(data, ensure_ascii=False, indent=1)
+
+
+def score(cand, term, sense=None):
     t = norm(term)
     tokens = t.split()
     base = norm(cand["name"].replace("_", " ").replace("-", " "))
     btokens = base.split()
     s = 0
-    if norm(cand["lemma"]) == t:
-        s += 100
+    lemma, sublemma = split_lemma(cand["lemma"])
+    if (sublemma and norm(sublemma) == t) or (not sublemma and norm(lemma) == t):
+        s += 100  # the entry's headword, or its sublemma for expressions ("buenas tardes")
     if base == t:
         s += 90
     elif base.startswith(t + " ") and all(len(x) == 1 or x.isdigit() or x in VARIANT for x in btokens[len(tokens):]):
@@ -119,28 +155,44 @@ def score(cand, term):
     if tokens and all(x in btokens for x in tokens):
         s += 30
     s -= 3 * max(0, len(btokens) - len(tokens))
+    if sense and norm(sense) in norm(cand.get("context", "")):
+        s += 50  # the definition mentions the meaning we want ("letra")
     return s
 
 
-def pick(term_list, explicit=None, pages=None):
+def pick(term_list, explicit=None, pages=None, sense=None):
     """Searches each term until one entry matches. Returns (choice, all candidates seen, term used).
 
     Candidates are scored against every query of the sign, so a search for "noches" can
     find "noches_buenas" for "buenas noches". Result pages are appended to `pages`.
     """
     seen = []
-    best = lambda c: max(score(c, q) for q in term_list)  # noqa: E731
+    best = lambda c: max(score(c, q, sense) for q in term_list)  # noqa: E731
     for term in term_list:
         page = search(term)
         if pages is not None:
             pages.append((term, page))
         cands = candidates(page)
+        if not cands:
+            # Some entries ("gracias") only come up through the autocomplete.
+            tokens = norm(term).split()
+            hints, raw = suggest(term)
+            if pages is not None and raw:
+                pages.append((f"autocompletar {term}", raw))
+            for text, params in [h for h in hints if all(x in norm(h[0]).split() for x in tokens)][:3]:
+                page = fetch(urllib.parse.urljoin(BASE, params)) if params else search(text)
+                if pages is not None:
+                    pages.append((text, page))
+                cands += [c for c in candidates(page) if c["name"] not in {x["name"] for x in cands}]
         seen.extend({**c, "term": term} for c in cands)
         if explicit:
             for c in cands:
                 if c["name"] == explicit:
                     return c, seen, term
             continue
+        if sense:
+            # Only entries whose definition has that meaning ("letra" leaves out the preposition "a").
+            cands = [c for c in cands if norm(sense) in norm(c["context"])]
         ranked = sorted(cands, key=lambda c: -best(c))
         if ranked and best(ranked[0]) >= 30:
             return ranked[0], seen, term
@@ -201,9 +253,9 @@ def load_signs(path):
     data = json.load(open(path, encoding="utf-8"))
     signs = {}
     for w in data["words"]:
-        signs[w["key"]] = {"label": w["label"], "q": w.get("q") or [w["w"]], "file": w.get("file")}
-    for key, s in data["signs"].items():
-        signs[key] = {"label": s["label"], "q": s["q"], "file": s.get("file")}
+        signs[w["key"]] = {"label": w["label"], "q": w.get("q") or [w["w"]], "file": w.get("file"), "sense": w.get("sense")}
+    for key, s in list(data["signs"].items()) + [(x["key"], x) for x in data.get("letters", [])]:
+        signs[key] = {"label": s["label"], "q": s["q"], "file": s.get("file"), "sense": s.get("sense")}
     return signs
 
 
@@ -216,6 +268,7 @@ def main():
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--only", default="")
     ap.add_argument("--dump", default="", help="keys whose search pages are saved in the report (always for missing signs)")
+    ap.add_argument("--review", action="store_true", help="also search the signs already published, to list their meanings")
     args = ap.parse_args()
 
     os.makedirs(args.out, exist_ok=True)
@@ -233,14 +286,25 @@ def main():
         redo = args.force or key in only or key in dump or prev is None or (sign["file"] and prev.get("src") != sign["file"])
         if not redo:
             items[key] = prev
-            continue
+            if not args.review:
+                continue
         print(f"[{i}/{len(signs)}] {key}: {', '.join(sign['q'])}", flush=True)
         pages = []
         try:
-            choice, seen, term = pick(sign["q"], sign["file"], pages)
+            choice, seen, term = pick(sign["q"], sign["file"], pages, sign["sense"])
         except Exception as e:  # noqa: BLE001
             choice, seen, term = None, [], None
             print(f"  ! búsqueda: {e}")
+        if not redo:
+            # Review only: keep the published video and note what the search would choose now.
+            kept = next((c for c in seen if c["name"] == prev["src"]), {"lemma": prev.get("lemma", ""), "context": ""})
+            rows.append({
+                "key": key, "label": sign["label"], "queries": sign["q"], "term": term, "status": "kept",
+                "chosen": prev["src"], "lemma": kept["lemma"], "context": kept["context"],
+                "now": choice["name"] if choice and choice["name"] != prev["src"] else None,
+                "candidates": [{"name": c["name"], "lemma": c["lemma"], "def": c["context"], "term": c["term"]} for c in seen],
+            })
+            continue
         if key in dump or not choice:
             os.makedirs(os.path.join(args.report, "pages"), exist_ok=True)
             for n, (q, page) in enumerate(pages, 1):
@@ -251,7 +315,7 @@ def main():
             "chosen": choice["name"] if choice else None,
             "lemma": choice["lemma"] if choice else "",
             "context": choice["context"] if choice else "",
-            "candidates": [{"name": c["name"], "lemma": c["lemma"], "term": c["term"]} for c in seen],
+            "candidates": [{"name": c["name"], "lemma": c["lemma"], "def": c["context"], "term": c["term"]} for c in seen],
         }
         if choice:
             try:
@@ -288,20 +352,31 @@ def main():
     lines = [
         "# Vídeos de los signos",
         "",
-        f"{len(items)} de {len(signs)} signos publicados ({total / 1e6:.1f} MB). Procesados ahora: {len(rows)}.",
+        f"{len(items)} de {len(signs)} signos publicados ({total / 1e6:.1f} MB). Procesados ahora: {sum(r['status'] != 'kept' for r in rows)}.",
         "",
     ]
     if missing:
         lines += ["## Sin vídeo", "", ", ".join(missing), ""]
     if rows:
-        lines += ["## Procesados", "", "| Clave | Buscado | Elegido | Lema | Otros candidatos |", "|---|---|---|---|---|"]
+        cell = lambda t: t.replace("|", "/")[:90]  # noqa: E731
+        lines += [
+            "## Procesados y revisados", "",
+            "| Clave | Signo | Elegido | Significado en DILSE | Otras acepciones |", "|---|---|---|---|---|",
+        ]
         for r in rows:
-            others = ", ".join(sorted({c["name"] for c in r["candidates"]} - {r["chosen"]}))[:200]
-            lines.append(f"| {r['key']} | {r['term'] or '-'} | {r['chosen'] or '❌'} | {r['lemma']} | {others} |")
+            others = {}
+            for c in r["candidates"]:
+                if c["name"] != r["chosen"]:
+                    others.setdefault(c["name"], c["def"])
+            others = "; ".join(f"{n}: {cell(d)[:40]}" for n, d in others.items())[:400]
+            chosen = r["chosen"] or "❌"
+            if r.get("now"):
+                chosen += f" (ahora elegiría {r['now']})"
+            lines.append(f"| {r['key']} | {r['label']} | {chosen} | {cell(r['lemma'] + ': ' + r['context'])} | {cell(others)[:400]} |")
     open(os.path.join(args.report, "summary.md"), "w", encoding="utf-8").write("\n".join(lines) + "\n")
     print("\n".join(lines[:3]))
     failed = [r for r in rows if r["status"].startswith("error")]
-    if failed and len(failed) == len(rows):
+    if failed and len(failed) == len([r for r in rows if r["status"] != "kept"]):
         sys.exit("Todos los signos han fallado: revisa la conexión con DILSE.")
 
 
