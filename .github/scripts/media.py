@@ -160,15 +160,16 @@ def score(cand, term, sense=None):
     return s
 
 
-def pick(term_list, explicit=None, pages=None, sense=None):
+def pick(term_list, explicit=None, pages=None, sense=None, find=()):
     """Searches each term until one entry matches. Returns (choice, all candidates seen, term used).
 
-    Candidates are scored against every query of the sign, so a search for "noches" can
-    find "noches_buenas" for "buenas noches". Result pages are appended to `pages`.
+    Candidates are scored against every query of the sign; `find` terms are only searched,
+    so "buenos días" can be found on the page of "día" as "dias_buenos" without matching
+    the plain "día". Result pages are appended to `pages`.
     """
     seen = []
     best = lambda c: max(score(c, q, sense) for q in term_list)  # noqa: E731
-    for term in term_list:
+    for term in list(term_list) + list(find):
         page = search(term)
         if pages is not None:
             pages.append((term, page))
@@ -253,9 +254,10 @@ def load_signs(path):
     data = json.load(open(path, encoding="utf-8"))
     signs = {}
     for w in data["words"]:
-        signs[w["key"]] = {"label": w["label"], "q": w.get("q") or [w["w"]], "file": w.get("file"), "sense": w.get("sense")}
+        signs[w["key"]] = {"label": w["label"], "q": w.get("q") or [w["w"]]}
+        signs[w["key"]].update({k: w.get(k) for k in ("file", "sense")}, find=w.get("find", []))
     for key, s in list(data["signs"].items()) + [(x["key"], x) for x in data.get("letters", [])]:
-        signs[key] = {"label": s["label"], "q": s["q"], "file": s.get("file"), "sense": s.get("sense")}
+        signs[key] = {"label": s["label"], "q": s["q"], "file": s.get("file"), "sense": s.get("sense"), "find": s.get("find", [])}
     return signs
 
 
@@ -291,7 +293,7 @@ def main():
         print(f"[{i}/{len(signs)}] {key}: {', '.join(sign['q'])}", flush=True)
         pages = []
         try:
-            choice, seen, term = pick(sign["q"], sign["file"], pages, sign["sense"])
+            choice, seen, term = pick(sign["q"], sign["file"], pages, sign["sense"], sign["find"])
         except Exception as e:  # noqa: BLE001
             choice, seen, term = None, [], None
             print(f"  ! búsqueda: {e}")

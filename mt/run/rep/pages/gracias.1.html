@@ -1,0 +1,467 @@
+<!-- buscar=gracias -->
+<!-- buscar=gracias -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="https://fundacioncnse-dilse.org/js/jssocials-1.5.0/styles/jssocials.css" />
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.5.0/jssocials-theme-flat.css" />
+
+
+<script src="https://fundacioncnse-dilse.org/js/jssocials-1.5.0/src/jssocials.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<!-- Magnific Popup core CSS file -->
+<link rel="stylesheet" href="https://fundacioncnse-dilse.org/js/popup/magnific-popup.css">
+
+
+<!-- Magnific Popup core JS file -->
+<script src="https://fundacioncnse-dilse.org/js/popup/jquery.magnific-popup.js"></script>
+
+<script>
+
+var palabra_seleccionada="";
+
+var options = {
+	url: function() {
+		return "https://fundacioncnse-dilse.org/php/buscador-autocompletar_nuevo.php";
+	},
+	list: {
+		maxNumberOfElements: 10,
+		match: {
+			enabled: true
+		},
+		sort: {
+			enabled: true
+		},
+		onClickEvent: function() {
+			var value = $("#search-input").getSelectedItemData().entrada;
+			palabra_seleccionada=value;
+			actualizar_web_buscando($("#search-input").getSelectedItemData().entrada);
+		},
+		onChooseEvent: function() {
+			var value = $("#search-input").getSelectedItemData().entrada;
+			palabra_seleccionada=value;
+			actualizar_web_buscando($("#search-input").getSelectedItemData().entrada);
+		},
+		onKeyEnterEvent:function() {
+			var value = $("#search-input").getSelectedItemData().entrada;
+			palabra_seleccionada=value;
+			actualizar_web_buscando($("#search-input").getSelectedItemData().entrada);
+		}
+
+	},
+
+	getValue: "entrada"
+};
+
+function abrirSeleccionado()
+{
+	actualizar_web_buscando(palabra_seleccionada);
+}
+
+
+function actualizar_web_buscando_palabra(palabra)
+{
+	this.document.location.href = "https://fundacioncnse-dilse.org/?buscar="+palabra;
+}
+
+function actualizar_web_buscando_parametros(parametros)
+{
+	this.document.location.href = "https://fundacioncnse-dilse.org/"+parametros;
+}
+
+function Download(url,accion,titulo) {
+	
+	actualizar_estadisticas(titulo,accion);
+	
+	var a = document.createElement("a");
+	a.href = url;
+	fileName = url.split("/").pop();
+	a.download = fileName;
+	console.log("nombre archivo:"+fileName);
+	document.body.appendChild(a);
+	a.click();
+	window.URL.revokeObjectURL(url);
+	a.remove();
+}
+
+function compartir(url_compartir,event)
+{
+	var myPos = [ event.clientX, event.clientY ];
+	console.log("url:"+url_compartir);
+
+	$("#share").jsSocials({
+		shares: ["twitter", "facebook"],
+		url: url_compartir,		
+		//text:url_compartir,
+		shareIn: "popup",
+		showLabel: false,
+		showCount: false
+	});
+
+	$( function() {
+		$( "#dialogo_compartir").dialog(
+		{
+			position: myPos,
+			resizable: false
+		}
+		);
+	} );
+}
+
+
+function cerrar_compartir()
+{
+	$('#dialogo_compartir').dialog('close');
+}
+
+function actualizar_estadisticas(texto_signo,accion)
+{
+	datos = [];
+	var url="https://fundacioncnse-dilse.org/php/actualizar_estadisticas.php?texto_signo="+texto_signo+"&accion="+accion;
+	console.log(url);
+	$.getJSON(url, datos, function(response){					
+		console.log("estadisticas actualizadas");
+	});
+}
+
+
+</script>
+
+
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Diccionario de la Lengua de Signos Española</title>
+		<meta name="description" content="Diccionario lengua de signos española – español que permite consultar, descargar y compartir las fotos y vídeos correspondientes a los signos." />
+		<meta name="keywords" content="lengua,lenguaje,diccionario,lengua de signos,lengua de signos española,lenguaje de signos,signo,sordo,sordos,sordas,sordomudos,sordomudas,sorda,sordomudo,sordomuda,fundación,fundacion,fundacion cnse,fundación cnse,cnse,confederación de sordos de España,Confederación de personas sordas,Confederación Estatal de personas sordas,discapacitados auditivos,discapacitado auditivo,deficiente auditivo,educación bilingüe,ayudas técnicas,asesor sordo,especialista en LSE,padres sordos,intérprete de lengua de signos, intérprete de LSE,asociaciones de sordos,federaciones de sordos,persona sorda,personas sordas, personas sordociegas,sordociegos,sordociegas,sordociego,sordociega,persona sordociega,lenguaje de sordos,lengua de señas,lenguaje de sordomudos,discapacidad auditiva,deficiencia auditiva,deficientes auditivos,confederación estatal de personas sordas,banco de imágenes,banco de signos,pérdida auditiva,dactilológico,alfabeto dactilológico,dactilología,desarrollo lingüístico,bilingüe,bilingüismo,hipoacusia,hipoacúsico,discapacidad,vocabulario,palabras,vocabulario básico,mis primeros signos,aprender,aprender lengua de signos, aprender lengua de signos española,aprender lse,aprender ls, lse, ls,aprender lenguaje de signos,enseñar lse,enseñar lengua de signos,enseñar lenguaje de signos,educación sordos,saludos y preguntas,preguntas,saludos y cortesía,comidas y bebidas,comidas,bebidas,postres,cuerpo,sentidos,casa,objetos del baño,objetos de cocina,colegio,cosas del colegio,colores,formas,tamaños,calendario,ciudad,medios de transporte,profesiones,meses del año,días de la semana,estaciones,tiempo,fiestas,naturaleza,tiempo atmosférico,animales,seña,señas,lenguaje de señas,lengua de señas,lengua de señas española,dislalia,disfasia,alteraciones del lenguaje,sistemas alternativos,sistemas aumentativos,sistemas alternativos de comunicación, sistemas complementarios de comunicación,SSAACC,padres con hijos sordos,familias sordas,familias con miembros sordos,frecuencia modulada,equipo FM,equipos FM,educación inclusiva,inclusión alumnos sordos,profesionales audición y lenguaje, maestros audición y lenguaje,inclusión educativa,diversidad del alumnado,pt,PT,pedagogía terapeútica,educación especial,equipos de atención temprana,EOEP discapacidad auditiva,EOEP específicos,departamentos de orientación,atención temprana,maestros inclusivos,bimodal,saac,comunicación,accesibilidad,autonomía,minusvalía,diversidad funcional, tel, t.e.l.,autismo,autista,trastorno del lenguaje,comunicación total,alumnado con discapacidad auditiva,alumno con deficiencia auditiva,alumna con deficiencia auditiva,alumnos con deficiencia auditiva,alumno con deficiencia,identidad sorda,implante coclear,audífono,comunidad sorda,signar,signante,barrera de comunicación,hijo sordo,léxico,glosario,enciclopedia,idioma,pedagogía,didáctica,lingüística,adaptación curricular,audiología,audioprótesis" />
+		<link rel="shortcut icon" href="img/dilse.ico">
+  <!--      principal-->
+
+		<link href='https://fonts.googleapis.com/css?family=Terminal+Dosis+Light' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.3.0/css/font-awesome.min.css" />
+       <link rel="stylesheet" type="text/css" href="css/normalice.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+<!--        buscador-->
+<link rel="stylesheet" type="text/css" href="css/buscador2.css" />
+        <script src="js/modernizr.custom.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+ <!-- Cookie Consent by FreePrivacyPolicy.com https://www.FreePrivacyPolicy.com -->
+<script type="text/javascript" src="//www.freeprivacypolicy.com/public/cookie-consent/4.2.0/cookie-consent.js" charset="UTF-8"></script>
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({"notice_banner_type":"interstitial","consent_type":"express","palette":"light","language":"es","page_load_consent_levels":["strictly-necessary"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false,"website_name":"fundacioncnse-dilse.org","website_privacy_policy_url":"https://fundacioncnse-dilse.org/politica-cookie.php"});
+});
+</script>
+
+<!-- Unnamed script -->
+<script type="text/plain" data-cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-149447847-1"></script>
+		<script type="text/plain" data-cookie-consent="tracking">
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-149447847-1');
+		</script>
+<!-- end of Unnamed script-->
+
+<noscript>Cookie Consent by <a href="https://www.freeprivacypolicy.com/">Free Privacy Policy Generator</a></noscript>
+<!-- End Cookie Consent by FreePrivacyPolicy.com https://www.FreePrivacyPolicy.com -->
+
+
+
+
+
+<!-- Below is the link that users can use to open Preferences Center to change their preferences. Do not modify the ID parameter. Place it where appropriate, style it as needed. -->
+
+
+
+<a href="#" id="open_preferences_center"><i class="fa fa-cogs" aria-hidden="true"></i> Cookies</a>        
+        
+        
+
+
+
+ 
+</head>
+	<body>
+	<iframe id="my_iframe_descargas" style="display:none;"></iframe>
+
+  <!--    MENU SUPERIOR----------->
+  <div class="cabecera">
+<div class="logo">
+<ul>
+<li><a href="http://www.fundacioncnse.org/" target="_blank"><img src="img/logo-fundacion-cnse.png" alt="Inicio" class="bto-sobre"></a></li>
+</ul>
+   </div>
+   <div class="menu1">
+   <ul>
+<li><a href="index.php"><img src="img/ico-inicio.png" alt="Inicio" class="bto-sobre"></a></li>
+<li><a href="mapa-web.php"><img src="img/ico-mapa.png" alt="Inicio" class="bto-sobre"></a></li>
+<li><a href="contacto.php"><img src="img/ico-contacto.png" alt="Inicio" class="bto-sobre"></a></li>
+				<li><img onclick ="compartir('https://fundacioncnse-dilse.org/?buscar=gracias',event);" src="img/compartir.png" alt="Compartir" class="bto-sobre"></li>
+				
+</ul>  
+   </div>
+    </div>
+	
+ <!--   fin MENU SUPERIOR----------->
+
+
+
+<!--		buscador-->
+
+  <!--     <div class="contendor-buscador">-->
+		<main class="main-wrap">
+<!--<div class="search">-->
+  <div class="buscador">
+        <!--<h1>Buscar</h1>-->
+				<!--<button id="btn-search-close" class="btn btn--search-close" ><img src="img/cerrar.png" alt="cerrar"></button>-->
+			<div class="search__form">
+					<!--<input onkeypress="eventoTeclado(event);" id="search-input" class="search__input ui-autocomplete-input" onkeypress="eventoTeclado(event);" name="search" type="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />-->
+					<input  id="search-input" onkeypress="eventoTeclado(event);" onclick="cerrar_compartir();" class="search__input ui-autocomplete-input" name="search" type="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+
+				<button class="btn btn--search"><img src="img/lupa.png" alt="lupa" class="bto-sobre"></button>
+			</div>
+            <!--<div style="display:none;" class="search__idioma">
+              <form>
+               	<p><img src="img/espana.png"><input name="LSE" type="checkbox"  class="check" value="">
+              <img src="img/catalana.png"><input name="LSC" type="checkbox" class="check" value="">
+                <img src="img/union-europea.png" ><input name="SSI" type="checkbox" class="check"  value=""></p>
+                 <p> <a href="#" class="bto-avanzada" >Busqueda avanzada</a></p>
+              </form>-->
+	  </div>
+	  
+	  
+	
+<!--	</div>-->
+	
+	
+
+<!--fin busquedor-->
+
+        <div class="container">
+
+        
+     <button id="menu-toggle" class="menu-toggle"><span>Menu</span></button>
+			<div id="theSidebar" class="sidebar">
+			  <button class="close-button fa fa-fw fa-close"></button>				
+				<h1> <a href="index.php"><img src="img/logo.png"  alt="logo" class="tamano" ></a><br>Diccionario de la Lengua de Signos Española</h1>			
+				<div class="menu">				
+<a href="index.php" class="bto-diccionario "><b><i class="fa fa-book" aria-hidden="true"></i> Ver diccionario </b> </a>				
+                    <a href="presentacion.php">Presentación</a>
+					<a href="ayuda.php">Ayuda</a> 
+                    <a href="diccionarios.php">Otros diccionarios</a> 
+				</div>
+				
+				<div style="display: flex;margin-top:20px;margin-bottom:-20px;">
+					<a href="https://play.google.com/store/apps/details?id=com.tresandroides.dilse" target="_blank"><img src="img/descarga_android.png"></a>
+					<a href="https://apps.apple.com/es/app/diccionario-lse/id1497008462" target="_blank"><img src="img/descarga_iphone.png"></a>
+				</div>
+				
+				
+                <div class="logos">
+                <h3>Con la financiación de:</h3>
+                <ul>              
+                <li><a href="https://www.fundaciononce.es/" target="_blank"><img src="img/fundacion-once.png"  title="fundacion-once"></a></li>            
+                <li><a href="https://www.educacionyfp.gob.es/portada.html" target="_blank"><img src="img/ministerio-de-educacion.png"  title="Minsiterio de Educación y
+Formación Profesional"></a></li>            
+                </ul>
+                
+                  <h3>Con la colaboración de:</h3>
+                <ul>
+                 <li><a href="https://www.rae.es/" target="_blank"><img src="img/rae.png" title="RAE"></a></li>         
+                  <li><a href="https://www.fundacionvodafone.es/" target="_blank"><img src="img/fundacion-vodafone.png" title="fundación vodafone"></a></li>                         
+                  </ul>
+                  <br>
+                   <ul> 
+                  <li><a href="accesibilidad.php">Accesibilidad</a> | </li>   
+                   <li><a href="mapa-web.php">Mapa web</a> |</li> <br>                   
+                   <li><a href="aviso-legal.php">Aviso legal</a> | </li>
+                   <li><a href="politica-cookie.php">Política cookies</a></li>                     
+                  </ul>
+				  <br>
+				  Programado por:<br><a target="_blank" href="https://3androides.com/">Desarrollo de APPS</a> - <span style="color:#002A3A;"><b>3Androides</b></span>
+                </div>
+			</div>
+			<!-- fin MENU LATERAL -->
+
+           <!-- contenido de busqueda-->
+			<div id="theGrid" class="main">
+
+				<section class="grid">
+				   <h1>gracias :</h1>
+           <!--ENTRADAS DE BUSQUEDA-->
+		  					<article class="content__item">
+
+			<h2 class="title title--full">
+						</h2>
+			<div class="definicion">
+				<span  >
+								</span>
+							</div>
+			<div class="meta meta--full">
+		 <!--<div class="lugar-signo"><img src="img/espana.png"><img src="img/catalana.png" width="40" height="40"><img src="img/union-europea.png"></div>-->
+			<div class="definicion">
+			<a class="popup1" href="https://fundacioncnse-dilse.org/bddilse/images/stories/">
+								<img class="meta__avatar tamano2" src="https://fundacioncnse-dilse.org/bddilse/images/stories/" />
+
+			</a>
+			<button style="float:right;" onClick="compartir('https://fundacioncnse-dilse.org/bddilse/images/stories/',event);" class="redes2 bto-sobre"><img src="img/ico-redes.png"></button>
+
+			<script>
+				$('.popup1').magnificPopup({
+				  type: 'image'
+				  // other options
+				});
+			</script>
+
+
+			<p class="parrafo_descripcion">
+				<span  class="ico-acepcion">
+								</span>
+
+							</p>
+
+			  </div>
+			</div>
+
+		 <!-- FOTO 1-->
+		 
+		 <!-- VIDEO 1-->
+		
+		   <!--DEFINICION 1-->
+		   
+	   <!--EJEMPLO 1-->
+				  </article>
+					<div style="width:100% !important;text-align:center;margin-top:5%;">
+			<img src="img/sin-resultados.png">
+			<h2>No se ha encontrado ningún resultado para el término buscado.</h2>
+			</div>
+			<!-- INICIO DE PIE-->
+     <div class="pie">
+     <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/es/" class="bto-sobre"><img src="img/88x31.png"/></a>  <br />
+Esta obra está bajo una licencia de <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/es/" class="bto-sobre" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported </a>
+     </div>
+      	
+	  <!-- FIN DE PIE-->
+	
+			  </section>
+
+                   <!-- CONTENIDO DE ENTRADA DE ENTRADA-->
+				<section class="content">
+					<div class="scroll-wrap">
+                  <button onclick="cerrar_compartir();" class="close-button"><i class="fa fa-close"></i><span>Close</span></button>
+				<!--	ENTRADA 1-->
+
+               <!-- CONTENIDO LATERAL DE LA ENTRADA 1-->
+
+						
+              <!--	ENTRADA 2-->
+
+
+
+					</div>
+
+				</section>
+			</div>
+		</div>
+        	  <!-- FIN DE CONTENIDO ENTRADA-->
+
+
+	<div id="dialogo_compartir" title="Compartir" style="display:none;">
+	    <p>Seleccione la red con la que desea compartir el contenido:</p>
+		<div id="share"></div>
+	</div>
+	
+	
+	</main>
+</div>
+	
+	</body>
+</html>
+
+<script>
+
+function eventoTeclado(tecla)
+{
+	if (tecla.keyCode  == 13){
+		palabra_seleccionada=document.getElementById('search-input').value;
+		actualizar_web_buscando_palabra(palabra_seleccionada);
+	}
+}
+
+$( "#search-input" ).autocomplete({
+      source: function( request, response ) {
+        $.ajax( {
+		  url: "https://fundacioncnse-dilse.org/php/buscador-autocompletar_nuevo.php?buscar="+document.getElementById("search-input").value,
+          dataType: "json",
+          data: {
+            term: request.term
+          },
+          success: function( data ) {
+            response( data );
+          }
+        } );
+      },
+      minLength: 1,
+      select: function( event, ui ) {
+
+		var value = ui.item.value;
+
+		palabra_seleccionada=value;
+		//actualizar_web_buscando(value);
+		actualizar_web_buscando_parametros(ui.item.parametros);
+      }
+    } );
+
+$(document).ready(function() {
+  $('.image-link').magnificPopup({type:'image'});
+});
+
+function ver_camara_lenta(num)
+{
+	var e = document.getElementById("velocidad_reproduccion_"+num);
+  //var strUser = e.options[e.selectedIndex].value;
+	//alert(e.selectedIndex);
+
+  switch (e.selectedIndex) {
+  	case 0:
+  		document.getElementById("video1_"+num).playbackRate = 0.25;
+  		break;
+		case 1:
+  		document.getElementById("video1_"+num).playbackRate = 0.50;
+  		break;
+		case 2:
+  		document.getElementById("video1_"+num).playbackRate = 0.75;
+  		break;
+		case 3:
+  		document.getElementById("video1_"+num).playbackRate = 1;
+  		break;
+  }
+
+	/*if(document.getElementById("camara_lenta_"+num).checked==true)
+	{
+		document.getElementById("video1_"+num).playbackRate = 0.3;
+	}
+	else {
+		document.getElementById("video1_"+num).playbackRate = 1;
+	}*/
+
+	console.log("Velocidad actual:"+video1.playbackRate);
+}
+
+
+
+
+</script>
+
+<script src="js/classie.js"></script>
+<script src="js/main.js"></script>
+<!--<script src="js/buscador.js"></script>-->

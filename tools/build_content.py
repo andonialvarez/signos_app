@@ -247,16 +247,16 @@ EXTRA = {
     "mi": ("MI", ["mi", "mío"]),
     "que_tal": ("¿QUÉ-TAL?", ["qué tal"]),
     "encantado": ("ENCANTADO", ["encantado"]),
-    "buenos_dias": ("BUENOS-DÍAS", ["buenos días", "días"]),
-    "buenas_tardes": ("BUENAS-TARDES", ["buenas tardes", "tardes"]),
-    "buenas_noches": ("BUENAS-NOCHES", ["buenas noches", "noches"]),
-    "hasta_luego": ("HASTA-LUEGO", ["hasta luego", "luego"]),
-    "hasta_manana": ("HASTA-MAÑANA", ["hasta mañana", "mañana"]),
+    "buenos_dias": ("BUENOS-DÍAS", ["buenos días"]),
+    "buenas_tardes": ("BUENAS-TARDES", ["buenas tardes"]),
+    "buenas_noches": ("BUENAS-NOCHES", ["buenas noches"]),
+    "hasta_luego": ("HASTA-LUEGO", ["hasta luego"]),
+    "hasta_manana": ("HASTA-MAÑANA", ["hasta mañana"]),
     "despacio": ("DESPACIO", ["despacio"]),
     "repetir": ("REPETIR", ["repetir"]),
-    "de_nada": ("DE-NADA", ["de nada", "nada"]),
+    "de_nada": ("DE-NADA", ["de nada"]),
     "perdon": ("PERDÓN", ["perdón", "perdonar"]),
-    "lo_siento": ("LO-SIENTO", ["lo siento", "siento"]),
+    "lo_siento": ("LO-SIENTO", ["lo siento"]),
     "hambre": ("HAMBRE", ["hambre"]),
     "sed": ("SED", ["sed"]),
     "precio": ("PRECIO", ["precio"]),
@@ -279,7 +279,7 @@ EXTRA = {
     "juntos": ("JUNTOS", ["juntos", "junto"]),
     "mensaje": ("MENSAJE", ["mensaje"]),
     "enviar": ("ENVIAR", ["enviar", "mandar"]),
-    "fin_de_semana": ("FIN-DE-SEMANA", ["fin de semana", "fin", "finde"]),
+    "fin_de_semana": ("FIN-DE-SEMANA", ["fin de semana"]),
     "bueno": ("BUENO", ["bueno"]),
     "estacion": ("ESTACIÓN", ["estación"]),
     "deber": ("DEBER", ["deber", "tener que"]),
@@ -295,8 +295,28 @@ EXTRA = {
     "cuanto_dinero": ("¿CUÁNTO?", ["cuánto", "cuanto"]),
 }
 
+# Extra DILSE searches that only help to find the sign, without counting as a match: DILSE files
+# expressions under their main word ("dias_buenos" is on the page of "día").
+FIND = {
+    "buenos_dias": ["día"],
+    "buenas_tardes": ["tarde"],
+    "buenas_noches": ["noche"],
+    "hasta_luego": ["luego"],
+    "hasta_manana": ["mañana"],
+    "de_nada": ["nada"],
+    "lo_siento": ["sentir", "siento"],
+    "fin_de_semana": ["fin", "semana"],
+    "por_favor": ["favor"],
+    "gracias": ["gracia", "agradecer"],
+    "abrir": ["abierto"],
+    "cerrar": ["cerrado"],
+    "vacaciones": ["vacación"],
+}
+
 # DILSE file for signs whose automatic match is ambiguous (see the media-report branch).
 FILES = {
+    "letra_ny": "n-fuerte",
+    "letra_rr": "rr",
     "tu": "tu1",
     "tu_pos": "tu2",
     "hablar": "hablar-charlar_1",
@@ -496,6 +516,8 @@ def main(out_path):
             item["tip"] = tip
         if key in FILES:
             item["file"] = FILES[key]
+        if key in FIND:
+            item["find"] = FIND[key]
         keys[key] = label
         words.append(item)
     extra = {}
@@ -505,6 +527,8 @@ def main(out_path):
         extra[key] = {"label": label, "q": q}
         if key in FILES:
             extra[key]["file"] = FILES[key]
+        if key in FIND:
+            extra[key]["find"] = FIND[key]
     letters = []
     for letter, q in LETTERS:
         key = "letra_" + slug(letter.replace("Ñ", "ny"))
@@ -526,6 +550,7 @@ def main(out_path):
             item["note"] = note
         exprs.append(item)
     assert not set(FILES) - set(keys), f"FILES for unknown keys: {set(FILES) - set(keys)}"
+    assert not set(FIND) - set(keys), f"FIND for unknown keys: {set(FIND) - set(keys)}"
     unused_extra = set(extra) - used
     assert not unused_extra, f"unused extra signs: {unused_extra}"
     heads = [e["es"] for e in exprs]
