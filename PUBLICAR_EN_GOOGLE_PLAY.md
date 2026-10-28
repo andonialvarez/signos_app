@@ -15,7 +15,7 @@ Revisión del 28 de octubre de 2026 frente a los requisitos actuales de Google P
 | Páginas de memoria de 16 KB | ✅ La app no tiene código nativo propio |
 | Política de privacidad pública | ✅ [PRIVACY.md](PRIVACY.md), enlazada también desde Ajustes > Acerca de |
 | Licencia de los vídeos (DILSE, CC BY-NC-SA 3.0) | ✅ Créditos y enlace a la licencia en Ajustes > Créditos y en la Release `media`. ⚠️ Prohíbe el uso comercial: por eso la versión de Play sale **sin anuncios** (apartado 3) |
-| Contenido propio | ✅ Las glosas, notas y pistas de las 133 expresiones y 213 signos están escritas para esta app |
+| Contenido propio | ✅ Las glosas, notas y pistas de las 130 expresiones y 211 signos están escritas para esta app |
 | Nombre | ✅ No he encontrado otra app llamada "Signos Daily", pero revísalo tú en Play antes de publicar |
 
 ## 2. Lo que tienes que hacer tú

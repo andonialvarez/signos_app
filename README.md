@@ -16,7 +16,7 @@ App Android para aprender lengua de signos española (LSE) un poco cada día: un
 - **Sin conexión**: cada vídeo se descarga una vez y se queda en el móvil; en Ajustes puedes descargarlos todos.
 - **Perfil**: te saluda por tu nombre. Tema claro/oscuro y reinicio de progreso.
 
-Contenido: 213 signos y 133 expresiones (`app/src/main/assets/content.json`). Tu progreso se guarda en el móvil; no hay servidor ni cuenta.
+Contenido: 211 signos, 130 expresiones y las 30 letras del alfabeto dactilológico (`app/src/main/assets/content.json`, generado con `tools/build_content.py`). Tu progreso se guarda en el móvil; no hay servidor ni cuenta.
 
 ## De dónde salen los signos
 
