@@ -37,7 +37,7 @@ Cada push a `main` lanza GitHub Actions, que compila el APK y lo publica como *R
 
 ## Google Play
 
-La versión `play` no se actualiza sola (lo prohíbe Google Play) y lleva AdMob con consentimiento RGPD preparado pero apagado; la de GitHub muestra anuncios de prueba. Requisitos y pasos: [PUBLICAR_EN_GOOGLE_PLAY.md](PUBLICAR_EN_GOOGLE_PLAY.md). Privacidad: [PRIVACY.md](PRIVACY.md).
+La versión `play` no se actualiza sola (lo prohíbe Google Play) y, mientras `playAdsEnabled=false`, no incluye AdMob (`app/src/noads`); el banner con consentimiento RGPD está listo en `app/src/ads` y la versión de GitHub lo usa con anuncios de prueba. Requisitos y pasos: [PUBLICAR_EN_GOOGLE_PLAY.md](PUBLICAR_EN_GOOGLE_PLAY.md). Privacidad: [PRIVACY.md](PRIVACY.md).
 
 ## Compilar en local
 

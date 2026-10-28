@@ -4,6 +4,12 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
+fun prop(name: String) = (project.findProperty(name) as String?)?.takeIf { it.isNotBlank() }
+
+// The sign videos come from DILSE (CC BY-NC-SA: no commercial use), so the Play build has no ads,
+// and not even the AdMob SDK, until the Fundación CNSE allows them (gradle.properties).
+val playAdsEnabled = prop("playAdsEnabled")?.toBoolean() ?: false
+
 android {
     namespace = "com.andoni.signosdaily"
     compileSdk = 36
@@ -45,8 +51,6 @@ android {
     // Google's public AdMob test IDs; they show "Test Ad" banners and never pay out.
     val testAdmobAppId = "ca-app-pub-3940256099942544~3347511713"
     val testBannerId = "ca-app-pub-3940256099942544/9214589741"
-    fun prop(name: String) = (project.findProperty(name) as String?)?.takeIf { it.isNotBlank() }
-
     flavorDimensions += "distribution"
     productFlavors {
         // Installed from the GitHub download link; updates itself from GitHub Releases.
@@ -65,12 +69,18 @@ android {
         create("play") {
             dimension = "distribution"
             buildConfigField("boolean", "SELF_UPDATE", "false")
-            buildConfigField("boolean", "ADS_ENABLED", (prop("playAdsEnabled")?.toBoolean() ?: false).toString())
+            buildConfigField("boolean", "ADS_ENABLED", playAdsEnabled.toString())
             buildConfigField("boolean", "ADS_REQUIRE_CONSENT", "true")
             buildConfigField("String", "ADMOB_BANNER_ID", "\"${prop("admobBannerId") ?: testBannerId}\"")
             manifestPlaceholders["admobAppId"] = prop("admobAppId") ?: testAdmobAppId
             signingConfig = signingConfigs.findByName("upload") ?: signingConfigs.getByName("debug")
         }
+    }
+
+    // Ads.kt with AdMob, or a stub without it.
+    sourceSets {
+        getByName("github").java.srcDir("src/ads/java")
+        getByName("play").java.srcDir(if (playAdsEnabled) "src/ads/java" else "src/noads/java")
     }
 
     buildTypes {
@@ -110,8 +120,14 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.5")
     implementation("androidx.datastore:datastore-preferences:1.1.1")
     implementation("androidx.media3:media3-exoplayer:1.5.1")
-    implementation("com.google.android.gms:play-services-ads:25.5.0")
-    implementation("com.google.android.ump:user-messaging-platform:4.0.0")
+    val admob = "com.google.android.gms:play-services-ads:25.5.0"
+    val ump = "com.google.android.ump:user-messaging-platform:4.0.0"
+    "githubImplementation"(admob)
+    "githubImplementation"(ump)
+    if (playAdsEnabled) {
+        "playImplementation"(admob)
+        "playImplementation"(ump)
+    }
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
