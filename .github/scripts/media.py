@@ -30,6 +30,8 @@ UA = "SignosDaily/1.0 (+https://github.com/andonialvarez/signos_app; app educati
 MEDIA_RE = re.compile(r"""(?:https?://[^"'\s>]*?/)?bddilse/images/stories/([^"'<>?#]+?)\.(mov|mp4|m4v|png|jpg|jpeg)""", re.I)
 BOLD_RE = re.compile(r"<(b|strong)\b[^>]*>(.*?)</\1>", re.I | re.S)
 NOT_FOUND = "No se ha encontrado ningún resultado"
+# Suffixes DILSE uses for variants of the same sign: one or two hands, letters, numbers.
+VARIANT = {"mon", "bim", "ma", "mp"}
 
 
 def norm(s):
@@ -110,19 +112,28 @@ def score(cand, term):
         s += 100
     if base == t:
         s += 90
-    elif base.startswith(t + " ") and all(len(x) <= 2 for x in btokens[len(tokens):]):
-        s += 60  # numbered or lettered variant: "manana 2", "casa a"
+    elif base.startswith(t + " ") and all(len(x) == 1 or x.isdigit() or x in VARIANT for x in btokens[len(tokens):]):
+        s += 60  # variant: "manana 2", "casa a", "hermano mon"
+    elif len(tokens) > 1 and sorted(btokens) == sorted(tokens):
+        s += 80  # same words in dictionary order: "noches_buenas" for "buenas noches"
     if tokens and all(x in btokens for x in tokens):
         s += 30
     s -= 3 * max(0, len(btokens) - len(tokens))
     return s
 
 
-def pick(term_list, explicit=None):
-    """Searches each term until one entry matches. Returns (choice, all candidates seen, term used)."""
+def pick(term_list, explicit=None, pages=None):
+    """Searches each term until one entry matches. Returns (choice, all candidates seen, term used).
+
+    Candidates are scored against every query of the sign, so a search for "noches" can
+    find "noches_buenas" for "buenas noches". Result pages are appended to `pages`.
+    """
     seen = []
+    best = lambda c: max(score(c, q) for q in term_list)  # noqa: E731
     for term in term_list:
         page = search(term)
+        if pages is not None:
+            pages.append((term, page))
         cands = candidates(page)
         seen.extend({**c, "term": term} for c in cands)
         if explicit:
@@ -130,8 +141,8 @@ def pick(term_list, explicit=None):
                 if c["name"] == explicit:
                     return c, seen, term
             continue
-        ranked = sorted(cands, key=lambda c: -score(c, term))
-        if ranked and score(ranked[0], term) >= 30:
+        ranked = sorted(cands, key=lambda c: -best(c))
+        if ranked and best(ranked[0]) >= 30:
             return ranked[0], seen, term
     if explicit:
         # The file may exist even if the search page did not show it.
@@ -204,6 +215,7 @@ def main():
     ap.add_argument("--report", required=True)
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--only", default="")
+    ap.add_argument("--dump", default="", help="keys whose search pages are saved in the report (always for missing signs)")
     args = ap.parse_args()
 
     os.makedirs(args.out, exist_ok=True)
@@ -213,20 +225,27 @@ def main():
     if args.old and os.path.exists(args.old):
         old = json.load(open(args.old, encoding="utf-8")).get("items", {})
     only = {k.strip() for k in args.only.split(",") if k.strip()}
+    dump = {k.strip() for k in args.dump.split(",") if k.strip()}
 
     items, rows = {}, []
     for i, (key, sign) in enumerate(signs.items(), 1):
         prev = old.get(key)
-        redo = args.force or key in only or prev is None or (sign["file"] and prev.get("src") != sign["file"])
+        redo = args.force or key in only or key in dump or prev is None or (sign["file"] and prev.get("src") != sign["file"])
         if not redo:
             items[key] = prev
             continue
         print(f"[{i}/{len(signs)}] {key}: {', '.join(sign['q'])}", flush=True)
+        pages = []
         try:
-            choice, seen, term = pick(sign["q"], sign["file"])
+            choice, seen, term = pick(sign["q"], sign["file"], pages)
         except Exception as e:  # noqa: BLE001
             choice, seen, term = None, [], None
             print(f"  ! búsqueda: {e}")
+        if key in dump or not choice:
+            os.makedirs(os.path.join(args.report, "pages"), exist_ok=True)
+            for n, (q, page) in enumerate(pages, 1):
+                with open(os.path.join(args.report, "pages", f"{key}.{n}.html"), "w", encoding="utf-8") as f:
+                    f.write(f"<!-- buscar={q} -->\n{page}")
         row = {
             "key": key, "label": sign["label"], "queries": sign["q"], "term": term,
             "chosen": choice["name"] if choice else None,

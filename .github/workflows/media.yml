@@ -21,6 +21,10 @@ on:
         description: Solo estas claves, separadas por comas (por ejemplo casa,coche)
         type: string
         default: ""
+      dump:
+        description: Guardar en el informe las páginas de búsqueda de estas claves (y repetirlas)
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -36,9 +40,9 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -57,11 +61,12 @@ jobs:
         env:
           ONLY: ${{ inputs.only }}
           FORCE: ${{ inputs.force }}
+          DUMP: ${{ inputs.dump }}
         run: |
           python .github/scripts/media.py \
             --content app/src/main/assets/content.json \
             --old old/manifest.json --out out --report report \
-            --only "$ONLY" $([ "$FORCE" = "true" ] && echo --force)
+            --only "$ONLY" --dump "$DUMP" $([ "$FORCE" = "true" ] && echo --force)
 
       - name: Publish to the media release
         run: |

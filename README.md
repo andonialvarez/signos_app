@@ -21,7 +21,7 @@ Contenido: 213 signos y 133 expresiones (`app/src/main/assets/content.json`). Tu
 
 Los vídeos y fotos son del **[DILSE, Diccionario de la Lengua de Signos Española](https://fundacioncnse-dilse.org)** de la Fundación CNSE, el diccionario de referencia de la LSE, publicado con licencia [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/deed.es) (reconocimiento, no comercial, compartir igual).
 
-El workflow **Vídeos de los signos** (`.github/workflows/media.yml`) busca cada signo en DILSE, lo convierte a un MP4 ligero y una foto JPG, y lo publica en la Release `media`, de donde lo descarga la app. Cuando cambias `content.json`, solo procesa los signos nuevos. El informe de lo que ha elegido para cada palabra queda en la rama `media-report`; si eligió la acepción equivocada, añade al signo `"file": "<nombre en DILSE>"` en `content.json`.
+El workflow **Vídeos de los signos** (`.github/workflows/media.yml`) busca cada signo en DILSE, lo convierte a un MP4 ligero y una foto JPG, y lo publica en la Release `media`, de donde lo descarga la app. Cuando cambias `content.json`, solo procesa los signos nuevos. El informe de lo que ha elegido para cada palabra queda en la rama `media-report`; si eligió la acepción equivocada, indica el archivo de DILSE en `FILES` de `tools/build_content.py` (por ejemplo `"querer": "querer-desear"`) y vuelve a generar `content.json` con `python3 tools/build_content.py app/src/main/assets/content.json`.
 
 Las glosas, notas de gramática y pistas son de esta app, no del diccionario.
 
