@@ -1,0 +1,88 @@
+name: Vídeos de los signos
+
+# Downloads the sign videos and photos from DILSE (Fundación CNSE), converts them into
+# small files for phones and publishes them in the "media" pre-release, where the app
+# downloads them. Only new or changed signs are processed; the report goes to the
+# "media-report" branch.
+on:
+  push:
+    branches: [main]
+    paths:
+      - app/src/main/assets/content.json
+      - .github/scripts/media.py
+      - .github/workflows/media.yml
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Volver a descargar todos los signos
+        type: boolean
+        default: false
+      only:
+        description: Solo estas claves, separadas por comas (por ejemplo casa,coche)
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: media
+  cancel-in-progress: false
+
+jobs:
+  media:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ffmpeg and Pillow
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg
+          pip install --quiet pillow
+
+      - name: Get the current catalog
+        run: |
+          mkdir -p old
+          gh release download media -p manifest.json -D old || echo "Todavía no hay catálogo de vídeos."
+
+      - name: Download and convert new signs
+        env:
+          ONLY: ${{ inputs.only }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          python .github/scripts/media.py \
+            --content app/src/main/assets/content.json \
+            --old old/manifest.json --out out --report report \
+            --only "$ONLY" $([ "$FORCE" = "true" ] && echo --force)
+
+      - name: Publish to the media release
+        run: |
+          gh release view media >/dev/null 2>&1 || \
+            gh release create media --prerelease --title "Vídeos de los signos (DILSE)" --notes-file .github/media-notes.md
+          shopt -s nullglob
+          files=(out/*.mp4 out/*.jpg)
+          for ((i = 0; i < ${#files[@]}; i += 50)); do
+            gh release upload media "${files[@]:i:50}" --clobber
+          done
+          gh release upload media out/manifest.json --clobber
+
+      - name: Save the report
+        run: |
+          cat report/summary.md >> "$GITHUB_STEP_SUMMARY"
+          cp out/manifest.json report/
+          cd report
+          git init -q
+          git checkout -q -b media-report
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -q -m "Informe de vídeos de ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" media-report
