@@ -104,3 +104,13 @@ Envíalo a **fundacion.cnse@fundacioncnse.org**:
 - **Requisito de API cada año**: Google sube el nivel de API obligatorio cada agosto. Para seguir publicando actualizaciones habrá que subir `targetSdk` (lo puedo hacer yo).
 - **Verificación de desarrolladores**: desde 2027 Google exigirá que las apps instaladas fuera de Play (como la descarga de GitHub) vengan de un desarrollador verificado. Con tu cuenta de Play Console ya la tendrás; solo habrá que registrar también esta app.
 - **Variantes de la LSE**: la LSE tiene variantes regionales y el DILSE recoge la forma de referencia. En la ficha y en la app se aclara que, si en tu entorno se signa distinto, se siga a la comunidad.
+
+## 7. Subida automática a la prueba cerrada
+
+La primera versión se sube a mano (Google lo exige). A partir de ahí, cada push a `main` puede mandar el `.aab` solo a la prueba cerrada, sin descargar nada:
+
+1. En **Play Console → Configuración → Acceso a la API** (o, si no aparece, en [Google Cloud Console](https://console.cloud.google.com/iam-admin/serviceaccounts)), crea una **cuenta de servicio** y descarga su clave en formato **JSON**.
+2. En **Play Console → Usuarios y permisos → Invitar a usuarios**, pon el correo de esa cuenta de servicio (acaba en `iam.gserviceaccount.com`), dale acceso a Signos Daily con el permiso **Lanzar versiones en canales de prueba** y envía la invitación.
+3. En GitHub, **Settings → Secrets and variables → Actions → New repository secret**: nombre `PLAY_SERVICE_ACCOUNT_JSON` y como valor todo el contenido del archivo JSON.
+
+Desde entonces, cada versión nueva aparece en el canal de prueba cerrada (`alpha`) sin hacer nada. Sin ese secreto, el workflow sigue dejando el `.aab` en Artifacts como hasta ahora. El JSON es una clave: no lo compartas ni lo subas al repositorio.

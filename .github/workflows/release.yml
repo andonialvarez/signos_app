@@ -67,6 +67,29 @@ jobs:
           name: SignosDaily-play-1.0.${{ github.run_number }}
           path: app/build/outputs/bundle/playRelease/app-play-release.aab
 
+      # Sends the bundle to the closed testing track once the service account secret exists.
+      - name: Check Google Play service account
+        id: play_account
+        if: steps.upload_key.outputs.present == 'true'
+        env:
+          PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+        run: |
+          if [ -n "$PLAY_SERVICE_ACCOUNT_JSON" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::No Google Play service account yet; upload the bundle by hand."
+          fi
+
+      - name: Upload to Google Play closed testing
+        if: steps.play_account.outputs.present == 'true'
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: com.andoni.signosdaily
+          releaseFiles: app/build/outputs/bundle/playRelease/app-play-release.aab
+          track: alpha
+          status: completed
+
       - name: Rename APK and write notes
         env:
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
